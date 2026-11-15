@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VibeNote · 灵感签 — 纯文本一键生成高颜值分享卡片</title>
+  <meta name="description" content="VibeNote 灵感签：输入纯文本，一键生成高颜值分享卡片，支持多种皮肤、强调色、字体与 PNG 导出。" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+    :root {
+      --accent-color: #6366f1;
+      /* 由 JS 根据强调色计算的半透明色（html2canvas 不支持 color-mix，所以用 rgba） */
+      --accent-soft: rgba(99, 102, 241, 0.2);
+      --accent-soft-strong: rgba(99, 102, 241, 0.35);
+    }
+
+    body {
+      font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+
+    .font-sans-custom { font-family: 'Inter', 'Noto Sans SC', sans-serif; }
+    .font-serif-custom { font-family: 'Noto Serif SC', Georgia, serif; }
+    .font-mono-custom { font-family: 'JetBrains Mono', 'Noto Sans SC', monospace; }
+
+    /* 5 套卡片视觉皮肤 */
+    .skin-minimal {
+      background: #ffffff;
+      color: #1e293b;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08);
+    }
+
+    .skin-journal {
+      background: #fdfbf7;
+      color: #3f3a34;
+      border: 1px solid #efe7d6;
+      background-image: radial-gradient(#e5dccb 1px, transparent 1px);
+      background-size: 20px 20px;
+      box-shadow: 0 20px 40px -15px rgba(120, 95, 65, 0.12);
+    }
+
+    .skin-dark {
+      background: linear-gradient(145deg, #0f172a 0%, #1e1b4b 100%);
+      color: #f8fafc;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 25px 50px -12px rgba(2, 6, 23, 0.45);
+    }
+
+    .skin-aurora {
+      background: linear-gradient(135deg, #fff1f2 0%, #f3e8ff 50%, #e0f2fe 100%);
+      color: #1e1b4b;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 20px 40px -15px rgba(139, 92, 246, 0.16);
+    }
+
+    .skin-editorial {
+      background: #f4f1ea;
+      color: #18181b;
+      border: 2px solid #27272a;
+      box-shadow: 6px 6px 0px #27272a;
+    }
+
+    /* 富文本高亮样式 */
+    .vibe-highlight {
+      padding: 0 5px;
+      border-radius: 4px;
+      background-color: var(--accent-soft);
+      border-bottom: 2px solid var(--accent-color);
+      font-weight: 600;
+    }
+    .skin-dark .vibe-highlight {
+      background-color: var(--accent-soft-strong);
+      color: #ffffff;
+    }
+    .skin-editorial .vibe-highlight {
+      border-radius: 0;
+    }
+
+    /* 卡片内容排版 */
+    .vibe-content h1 {
+      font-size: 1.6em;
+      font-weight: 700;
+      line-height: 1.3;
+      margin: 0 0 0.6em;
+      letter-spacing: -0.01em;
+    }
+    .vibe-content h2 {
+      font-size: 1.25em;
+      font-weight: 700;
+      line-height: 1.35;
+      margin: 1em 0 0.4em;
+    }
+    .vibe-content p { margin: 0 0 0.8em; }
+    .vibe-content p:last-child { margin-bottom: 0; }
+    .vibe-content strong { font-weight: 700; }
+    .vibe-content em { font-style: italic; opacity: 0.9; }
+    .vibe-content ul { margin: 0 0 0.8em; padding: 0; list-style: none; }
+    .vibe-content li {
+      position: relative;
+      padding-left: 1.2em;
+      margin-bottom: 0.35em;
+    }
+    .vibe-content li::before {
+      content: '';
+      position: absolute;
+      left: 0.2em;
+      top: 0.68em;
+      width: 6px;
+      height: 6px;
+      border-radius: 9999px;
+      background: var(--accent-color);
+    }
+    .vibe-content blockquote {
+      margin: 0 0 0.8em;
+      padding: 0.2em 0 0.2em 0.9em;
+      border-left: 3px solid var(--accent-color);
+      opacity: 0.85;
+    }
+    .vibe-content code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.88em;
+      padding: 0.1em 0.35em;
+      border-radius: 4px;
+      background: rgba(127, 127, 127, 0.15);
+    }
+    .vibe-content hr {
+      border: none;
+      border-top: 1px dashed currentColor;
+      opacity: 0.25;
+      margin: 1em 0;
+    }
+
+    .accent-bar { background: var(--accent-color); }
+    .accent-text { color: var(--accent-color); }
+
+    /* 控制面板 */
+    .chip {
+      transition: all .15s ease;
+    }
+    .chip[aria-pressed="true"] {
+      border-color: #0f172a;
+      background: #0f172a;
+      color: #fff;
+    }
+    .swatch[aria-pressed="true"] {
+      outline: 2px solid #0f172a;
+      outline-offset: 2px;
+    }
+
+    .toast {
+      transition: opacity .2s ease, transform .2s ease;
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+  <!-- 顶部 -->
+  <header class="border-b border-slate-200 bg-white/80 backdrop-blur sticky top-0 z-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg accent-bar flex items-center justify-center text-white text-sm font-bold">V</div>
+        <span class="font-semibold tracking-tight">VibeNote</span>
+        <span class="text-slate-400 text-sm">· 灵感签</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <button id="copyBtn" class="hidden sm:inline-flex items-center gap-1.5 text-sm px-3 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-50">复制图片</button>
+        <button id="downloadBtn" class="inline-flex items-center gap-1.5 text-sm px-3 py-1.5 rounded-lg text-white accent-bar hover:opacity-90">下载 PNG</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-6 grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-6">
+    <!-- 左：编辑与设置 -->
+    <section class="space-y-5">
+      <div class="bg-white rounded-2xl border border-slate-200 p-4">
+        <div class="flex items-center justify-between mb-2">
+          <label for="input" class="text-sm font-medium text-slate-700">输入文字</label>
+          <span id="charCount" class="text-xs text-slate-400">0 字</span>
+        </div>
+        <textarea id="input" rows="11" class="w-full resize-y rounded-xl border border-slate-200 p-3 text-[15px] leading-relaxed focus:outline-none focus:ring-2 focus:ring-indigo-200" placeholder="在这里写下你的灵感……"></textarea>
+        <p class="mt-2 text-xs text-slate-500 leading-relaxed">
+          支持简单语法：<code class="bg-slate-100 px-1 rounded"># 标题</code>
+          <code class="bg-slate-100 px-1 rounded">**加粗**</code>
+          <code class="bg-slate-100 px-1 rounded">==高亮==</code>
+          <code class="bg-slate-100 px-1 rounded">*斜体*</code>
+          <code class="bg-slate-100 px-1 rounded">- 列表</code>
+          <code class="bg-slate-100 px-1 rounded">&gt; 引用</code>
+          <code class="bg-slate-100 px-1 rounded">---</code>
+        </p>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-slate-200 p-4 space-y-4">
+        <div>
+          <div class="text-sm font-medium text-slate-700 mb-2">皮肤</div>
+          <div id="skinGroup" class="flex flex-wrap gap-2"></div>
+        </div>
+
+        <div>
+          <div class="text-sm font-medium text-slate-700 mb-2">强调色</div>
+          <div class="flex flex-wrap items-center gap-2" id="accentGroup">
+            <label class="ml-1 inline-flex items-center gap-1.5 text-xs text-slate-500 cursor-pointer">
+              <input id="accentCustom" type="color" value="#6366f1" class="w-7 h-7 rounded cursor-pointer border border-slate-200" />
+              自定义
+            </label>
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <div class="text-sm font-medium text-slate-700 mb-2">字体</div>
+            <div id="fontGroup" class="flex flex-wrap gap-2"></div>
+          </div>
+          <div>
+            <div class="text-sm font-medium text-slate-700 mb-2">尺寸</div>
+            <div id="ratioGroup" class="flex flex-wrap gap-2"></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-sm font-medium text-slate-700">字号</span>
+            <span id="sizeLabel" class="text-xs text-slate-400">17px</span>
+          </div>
+          <input id="fontSize" type="range" min="13" max="26" value="17" class="w-full accent-indigo-500" />
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-3">
+          <div>
+            <label for="author" class="text-sm font-medium text-slate-700">署名</label>
+            <input id="author" type="text" maxlength="30" placeholder="@你的名字" class="mt-1.5 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-200" />
+          </div>
+          <div class="flex flex-col justify-end gap-2">
+            <label class="inline-flex items-center gap-2 text-sm text-slate-700">
+              <input id="showDate" type="checkbox" checked class="rounded" /> 显示日期
+            </label>
+            <label class="inline-flex items-center gap-2 text-sm text-slate-700">
+              <input id="showBrand" type="checkbox" checked class="rounded" /> 显示 VibeNote 水印
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 右：预览 -->
+    <section class="lg:sticky lg:top-20 self-start">
+      <div class="rounded-2xl bg-slate-100/70 border border-slate-200 p-4 sm:p-8 flex justify-center overflow-hidden">
+        <div id="cardWrap" class="w-full flex justify-center">
+          <article id="card" class="skin-minimal font-sans-custom relative rounded-3xl w-full max-w-[440px] p-8 flex flex-col">
+            <div class="flex items-center gap-2 mb-6">
+              <span class="block w-8 h-1.5 rounded-full accent-bar"></span>
+              <span id="cardDate" class="text-xs tracking-widest uppercase opacity-60"></span>
+            </div>
+            <div id="cardContent" class="vibe-content flex-1 leading-[1.8] break-words"></div>
+            <footer id="cardFooter" class="mt-8 pt-4 flex items-center justify-between text-xs opacity-70" style="border-top: 1px solid rgba(127,127,127,0.2);">
+              <span id="cardAuthor" class="font-medium"></span>
+              <span id="cardBrand" class="inline-flex items-center gap-1.5">
+                <span class="w-3.5 h-3.5 rounded accent-bar inline-block"></span>VibeNote
+              </span>
+            </footer>
+          </article>
+        </div>
+      </div>
+      <p class="text-center text-xs text-slate-400 mt-3">导出为 2× 高清 PNG · 所有内容只在你的浏览器里处理</p>
+    </section>
+  </main>
+
+  <div id="toast" class="toast fixed bottom-6 left-1/2 -translate-x-1/2 translate-y-2 opacity-0 pointer-events-none bg-slate-900 text-white text-sm px-4 py-2 rounded-lg shadow-lg"></div>
+
+  <script>
+    const SKINS = [
+      { id: 'minimal', name: '极简白' },
+      { id: 'journal', name: '手账' },
+      { id: 'dark', name: '暗夜' },
+      { id: 'aurora', name: '极光' },
+      { id: 'editorial', name: '杂志' },
+    ];
+    const ACCENTS = ['#6366f1', '#ec4899', '#f97316', '#10b981', '#0ea5e9', '#eab308', '#ef4444', '#18181b'];
+    const FONTS = [
+      { id: 'sans', name: '黑体', cls: 'font-sans-custom' },
+      { id: 'serif', name: '宋体', cls: 'font-serif-custom' },
+      { id: 'mono', name: '等宽', cls: 'font-mono-custom' },
+    ];
+    const RATIOS = [
+      { id: 'auto', name: '自适应', ratio: null },
+      { id: '3:4', name: '3:4', ratio: 4 / 3 },
+      { id: '1:1', name: '1:1', ratio: 1 },
+      { id: '9:16', name: '9:16', ratio: 16 / 9 },
+    ];
+
+    const DEFAULT_TEXT = `# 今天的灵感
+
+把想法写下来，它就==不会溜走==。
+
+- 简单的文字，也值得**好看**地被分享
+- 选一个皮肤，换一个强调色
+- 一键导出，发到任何地方
+
+> 灵感不是等来的，是记下来的。`;
+
+    const STORE_KEY = 'vibenote:v1';
+    const state = Object.assign({
+      text: DEFAULT_TEXT,
+      skin: 'minimal',
+      accent: '#6366f1',
+      font: 'sans',
+      ratio: 'auto',
+      size: 17,
+      author: '',
+      showDate: true,
+      showBrand: true,
+    }, loadState());
+
+    function loadState() {
+      try { return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; } catch (e) { return {}; }
+    }
+    function saveState() {
+      try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) {}
+    }
+
+    const $ = (id) => document.getElementById(id);
+    const card = $('card');
+
+    // ---------- 简易 Markdown 解析 ----------
+    function escapeHtml(s) {
+      return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+    function inline(s) {
+      s = escapeHtml(s);
+      s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
+      s = s.replace(/==([^=]+)==/g, '<span class="vibe-highlight">$1</span>');
+      s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      s = s.replace(/(^|[^*])\*([^*\n]+)\*/g, '$1<em>$2</em>');
+      return s;
+    }
+    function parse(text) {
+      const lines = text.replace(/\r\n/g, '\n').split('\n');
+      const out = [];
+      let para = [], list = [], quote = [];
+      const flushPara = () => { if (para.length) { out.push('<p>' + para.map(inline).join('<br>') + '</p>'); para = []; } };
+      const flushList = () => { if (list.length) { out.push('<ul>' + list.map(l => '<li>' + inline(l) + '</li>').join('') + '</ul>'); list = []; } };
+      const flushQuote = () => { if (quote.length) { out.push('<blockquote>' + quote.map(inline).join('<br>') + '</blockquote>'); quote = []; } };
+      const flushAll = () => { flushPara(); flushList(); flushQuote(); };
+
+      for (const raw of lines) {
+        const line = raw.trimEnd();
+        let m;
+        if (!line.trim()) { flushAll(); continue; }
+        if (/^\s*(-{3,}|\*{3,})\s*$/.test(line)) { flushAll(); out.push('<hr>'); continue; }
+        if ((m = line.match(/^##\s+(.*)$/))) { flushAll(); out.push('<h2>' + inline(m[1]) + '</h2>'); continue; }
+        if ((m = line.match(/^#\s+(.*)$/))) { flushAll(); out.push('<h1>' + inline(m[1]) + '</h1>'); continue; }
+        if ((m = line.match(/^\s*[-*•]\s+(.*)$/))) { flushPara(); flushQuote(); list.push(m[1]); continue; }
+        if ((m = line.match(/^>\s?(.*)$/))) { flushPara(); flushList(); quote.push(m[1]); continue; }
+        flushList(); flushQuote(); para.push(line);
+      }
+      flushAll();
+      return out.join('');
+    }
+
+    // ---------- 强调色 ----------
+    function hexToRgb(hex) {
+      let h = hex.replace('#', '');
+      if (h.length === 3) h = h.split('').map(c => c + c).join('');
+      const n = parseInt(h, 16);
+      return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+    }
+    function applyAccent(hex) {
+      const [r, g, b] = hexToRgb(hex);
+      const root = document.documentElement.style;
+      root.setProperty('--accent-color', hex);
+      root.setProperty('--accent-soft', `rgba(${r}, ${g}, ${b}, 0.2)`);
+      root.setProperty('--accent-soft-strong', `rgba(${r}, ${g}, ${b}, 0.35)`);
+    }
+
+    // ---------- 渲染 ----------
+    function formatDate(d) {
+      const pad = (n) => String(n).padStart(2, '0');
+      return `${d.getFullYear()}.${pad(d.getMonth() + 1)}.${pad(d.getDate())}`;
+    }
+
+    function render() {
+      card.className = card.className
+        .split(' ')
+        .filter(c => !c.startsWith('skin-') && !c.startsWith('font-') )
+        .join(' ');
+      card.classList.add('skin-' + state.skin, FONTS.find(f => f.id === state.font).cls);
+      card.style.fontSize = state.size + 'px';
+
+      const r = RATIOS.find(x => x.id === state.ratio);
+      if (r && r.ratio) {
+        const w = card.getBoundingClientRect().width || 440;
+        card.style.minHeight = Math.round(w * r.ratio) + 'px';
+      } else {
+        card.style.minHeight = '';
+      }
+
+      applyAccent(state.accent);
+      $('cardContent').innerHTML = parse(state.text) || '<p style="opacity:.4">在左侧输入文字…</p>';
+      $('cardDate').textContent = state.showDate ? formatDate(new Date()) : '';
+      $('cardAuthor').textContent = state.author;
+      $('cardBrand').style.visibility = state.showBrand ? 'visible' : 'hidden';
+      $('cardFooter').style.display = (state.author || state.showBrand) ? '' : 'none';
+
+      $('charCount').textContent = state.text.replace(/\s/g, '').length + ' 字';
+      $('sizeLabel').textContent = state.size + 'px';
+
+      document.querySelectorAll('[data-group]').forEach(btn => {
+        btn.setAttribute('aria-pressed', String(state[btn.dataset.group] === btn.dataset.value));
+      });
+      saveState();
+    }
+
+    // ---------- 控件 ----------
+    function makeChips(containerId, group, items) {
+      const box = $(containerId);
+      items.forEach(it => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'chip text-sm px-3 py-1.5 rounded-lg border border-slate-200 hover:border-slate-400';
+        b.textContent = it.name;
+        b.dataset.group = group;
+        b.dataset.value = it.id;
+        b.onclick = () => { state[group] = it.id; render(); };
+        box.appendChild(b);
+      });
+    }
+    makeChips('skinGroup', 'skin', SKINS);
+    makeChips('fontGroup', 'font', FONTS);
+    makeChips('ratioGroup', 'ratio', RATIOS);
+
+    const accentBox = $('accentGroup');
+    ACCENTS.forEach(c => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'swatch w-7 h-7 rounded-full border border-white shadow-sm';
+      b.style.background = c;
+      b.title = c;
+      b.dataset.group = 'accent';
+      b.dataset.value = c;
+      b.onclick = () => { state.accent = c; $('accentCustom').value = c; render(); };
+      accentBox.insertBefore(b, accentBox.lastElementChild);
+    });
+
+    const input = $('input');
+    input.value = state.text;
+    input.addEventListener('input', () => { state.text = input.value; render(); });
+    $('accentCustom').value = state.accent;
+    $('accentCustom').addEventListener('input', (e) => { state.accent = e.target.value; render(); });
+    $('fontSize').value = state.size;
+    $('fontSize').addEventListener('input', (e) => { state.size = +e.target.value; render(); });
+    $('author').value = state.author;
+    $('author').addEventListener('input', (e) => { state.author = e.target.value; render(); });
+    $('showDate').checked = state.showDate;
+    $('showDate').addEventListener('change', (e) => { state.showDate = e.target.checked; render(); });
+    $('showBrand').checked = state.showBrand;
+    $('showBrand').addEventListener('change', (e) => { state.showBrand = e.target.checked; render(); });
+    window.addEventListener('resize', render);
+
+    // ---------- 导出 ----------
+    function toast(msg) {
+      const t = $('toast');
+      t.textContent = msg;
+      t.style.opacity = '1';
+      t.style.transform = 'translate(-50%, 0)';
+      clearTimeout(toast._t);
+      toast._t = setTimeout(() => { t.style.opacity = '0'; t.style.transform = 'translate(-50%, 8px)'; }, 1800);
+    }
+
+    async function renderCanvas() {
+      if (document.fonts && document.fonts.ready) await document.fonts.ready;
+      return html2canvas(card, {
+        scale: 2,
+        backgroundColor: null,
+        useCORS: true,
+      });
+    }
+
+    $('downloadBtn').addEventListener('click', async () => {
+      try {
+        toast('正在生成…');
+        const canvas = await renderCanvas();
+        const a = document.createElement('a');
+        a.download = `vibenote-${Date.now()}.png`;
+        a.href = canvas.toDataURL('image/png');
+        a.click();
+        toast('已下载 ✓');
+      } catch (e) {
+        console.error(e);
+        toast('导出失败，请重试');
+      }
+    });
+
+    $('copyBtn').addEventListener('click', async () => {
+      try {
+        if (!navigator.clipboard || !window.ClipboardItem) throw new Error('unsupported');
+        toast('正在生成…');
+        const canvas = await renderCanvas();
+        const blob = await new Promise(r => canvas.toBlob(r, 'image/png'));
+        await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+        toast('已复制到剪贴板 ✓');
+      } catch (e) {
+        console.error(e);
+        toast('当前浏览器不支持复制图片，请用下载');
+      }
+    });
+
+    render();
+  </script>
+</body>
+</html>
