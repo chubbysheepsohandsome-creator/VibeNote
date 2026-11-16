@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VibeNote · 灵感签 — 纯文本一键生成高颜值分享卡片</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+    :root {
+      --accent-color: #6366f1;
+      --accent-soft: rgba(99, 102, 241, 0.15);
+      --accent-highlight: rgba(99, 102, 241, 0.22);
+      --accent-highlight-dark: rgba(99, 102, 241, 0.36);
+    }
+
+    body {
+      font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+
+    .font-sans-custom { font-family: 'Inter', 'Noto Sans SC', sans-serif; }
+    .font-serif-custom { font-family: 'Noto Serif SC', Georgia, serif; }
+    .font-mono-custom { font-family: 'JetBrains Mono', 'Noto Sans SC', monospace; }
+
+    /* 5 套卡片视觉皮肤（全部使用标准 hex/rgba，确保 html2canvas 100% 兼容） */
+    .skin-minimal {
+      background: #ffffff;
+      color: #1e293b;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08);
+    }
+
+    .skin-journal {
+      background: #fdfbf7;
+      color: #3f3a34;
+      border: 1px solid #efe7d6;
+      background-image: radial-gradient(#e5dccb 1px, transparent 1px);
+      background-size: 20px 20px;
+      box-shadow: 0 20px 40px -15px rgba(120, 95, 65, 0.12);
+    }
+
+    .skin-dark {
+      background: linear-gradient(145deg, #0f172a 0%, #1e1b4b 100%);
+      color: #f8fafc;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 25px 50px -12px rgba(2, 6, 23, 0.45);
+    }
+
+    .skin-aurora {
+      background: linear-gradient(135deg, #fff1f2 0%, #f3e8ff 50%, #e0f2fe 100%);
+      color: #1e1b4b;
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 0 20px 40px -15px rgba(139, 92, 246, 0.16);
+    }
+
+    .skin-editorial {
+      background: #f4f1ea;
+      color: #18181b;
+      border: 2px solid #27272a;
+      box-shadow: 6px 6px 0px #27272a;
+    }
+
+    /* 富文本高亮样式（兼容 html2canvas 的 rgba 写法） */
+    .vibe-highlight {
+      padding: 1px 5px;
+      border-radius: 4px;
+      background-color: var(--accent-highlight);
+      border-bottom: 2px solid var(--accent-color);
+      font-weight: 600;
+    }
+    .skin-dark .vibe-highlight {
+      background-color: var(--accent-highlight-dark);
+      color: #ffffff;
+    }
+
+    /* 卡片底部分割线 */
+    .card-footer-divider {
+      border-top: 1px solid rgba(148, 163, 184, 0.25);
+    }
+    .skin-dark .card-footer-divider {
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    /* 画布比例 */
+    .ratio-3-4 { width: 420px; min-height: 560px; }
+    .ratio-1-1 { width: 450px; min-height: 450px; }
+    .ratio-auto { width: 430px; min-height: 320px; }
+
+    @media (max-width: 640px) {
+      .ratio-3-4, .ratio-1-1, .ratio-auto { width: 100%; max-width: 380px; }
+    }
+
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- 顶部导航栏 -->
+  <header class="bg-white border-b border-slate-200 px-5 py-3 flex items-center justify-between sticky top-0 z-30">
+    <div class="flex items-center gap-2.5">
+      <div id="brandLogoBox" class="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold shadow-sm" style="background-color: var(--accent-color);">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+        </svg>
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="font-bold text-slate-900 tracking-tight text-base">VibeNote · 灵感签</span>
+          <span class="text-[11px] font-medium px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-600 border border-indigo-100">v2.1.1</span>
+        </div>
+        <p class="text-[11px] text-slate-400 hidden sm:block">本地纯前端渲染 · 零数据上传 · 一键生成社媒图文卡片</p>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2.5">
+      <button onclick="resetAll()" class="text-xs text-slate-500 hover:text-slate-800 px-2.5 py-1.5 rounded-lg hover:bg-slate-100 transition hidden sm:inline-block">
+        重置内容
+      </button>
+
+      <!-- 未登录状态按钮 -->
+      <button id="loginOpenBtn" onclick="openAuthModal()" class="px-3.5 py-1.5 text-xs font-semibold rounded-lg text-white shadow-xs hover:opacity-90 transition flex items-center gap-1.5" style="background-color: var(--accent-color);">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>
+        登录 / 创作者空间
+      </button>
+
+      <!-- 已登录状态胶囊 -->
+      <div id="userBadgeWrap" class="hidden items-center gap-2 bg-slate-100/90 border border-slate-200 pl-2 pr-1.5 py-1 rounded-full">
+        <span id="userAvatarNav" class="w-6 h-6 rounded-full text-white text-xs font-bold flex items-center justify-center" style="background-color: var(--accent-color);">创</span>
+        <span id="userNameNav" class="text-xs font-semibold text-slate-800 max-w-[96px] truncate">创作者</span>
+        <button onclick="openSavedDrawer()" class="text-[11px] font-medium px-2 py-0.5 rounded-full bg-white text-indigo-600 border border-indigo-100 hover:bg-indigo-50 transition">
+          灵感库 (<span id="savedCountNav">0</span>)
+        </button>
+        <button onclick="logoutUser()" title="退出登录" class="p-1 text-slate-400 hover:text-rose-500 transition">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" /></svg>
+        </button>
+      </div>
+
+      <a href="https://github.com/chubbysheepsohandsome-creator/VibeNote" target="_blank" rel="noopener" title="GitHub 开源仓库" class="p-2 text-slate-500 hover:text-slate-900 rounded-lg hover:bg-slate-100 transition">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- 主工作区 -->
+  <main class="flex-1 flex flex-col lg:flex-row overflow-hidden">
+
+    <!-- 左侧控制面板 -->
+    <aside class="w-full lg:w-[420px] bg-white border-r border-slate-200 p-5 overflow-y-auto space-y-6 shrink-0">
+
+      <!-- 1. 场景模板 -->
+      <section>
+        <div class="flex items-center justify-between mb-2">
+          <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400">1. 快速填充灵感模板</label>
+          <button onclick="saveCurrentToLibrary()" class="text-xs font-medium text-indigo-600 hover:text-indigo-800 flex items-center gap-1">
+            💾 收藏当前卡片
+          </button>
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <button onclick="applyTemplate('quote')" class="text-left px-3 py-2 rounded-lg border border-slate-200 hover:border-indigo-400 hover:bg-indigo-50/40 text-xs font-medium transition">💡 认知金句</button>
+          <button onclick="applyTemplate('book')" class="text-left px-3 py-2 rounded-lg border border-slate-200 hover:border-indigo-400 hover:bg-indigo-50/40 text-xs font-medium transition">📚 读书笔记</button>
+          <button onclick="applyTemplate('build')" class="text-left px-3 py-2 rounded-lg border border-slate-200 hover:border-indigo-400 hover:bg-indigo-50/40 text-xs font-medium transition">🚀 产品周报</button>
+          <button onclick="applyTemplate('list')" class="text-left px-3 py-2 rounded-lg border border-slate-200 hover:border-indigo-400 hover:bg-indigo-50/40 text-xs font-medium transition">📝 干货清单</button>
+        </div>
+      </section>
+
+      <!-- 2. 卡片文案 -->
+      <section class="space-y-3">
+        <div class="flex items-center justify-between">
+          <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400">2. 文案编辑</label>
+          <div class="flex items-center gap-1">
+            <button type="button" onclick="wrapSelection('**')" title="加粗选中文字" class="px-2 py-0.5 text-xs font-bold bg-slate-100 hover:bg-slate-200 rounded text-slate-700">B 加粗</button>
+            <button type="button" onclick="wrapSelection('==')" title="荧光高亮选中文字" class="px-2 py-0.5 text-xs font-medium bg-amber-100 hover:bg-amber-200 rounded text-amber-900">== 高亮</button>
+          </div>
+        </div>
+
+        <input id="inputTag" type="text" placeholder="顶部小标签（例如：每日思考 / 读书摘录）"
+          class="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 focus:outline-none focus:border-indigo-500" />
+
+        <input id="inputTitle" type="text" placeholder="主标题（可选）"
+          class="w-full px-3 py-2 text-sm font-semibold rounded-lg border border-slate-200 focus:outline-none focus:border-indigo-500" />
+
+        <textarea id="inputBody" rows="6" placeholder="在这里输入正文，支持 **加粗** 和 ==荧光高亮== 标记..."
+          class="w-full px-3 py-2.5 text-sm leading-relaxed rounded-lg border border-slate-200 focus:outline-none focus:border-indigo-500 resize-y"></textarea>
+      </section>
+
+      <!-- 3. 皮肤与配色 -->
+      <section class="space-y-3">
+        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400">3. 视觉皮肤与强调色</label>
+        <div class="grid grid-cols-5 gap-2" id="skinSelector">
+          <button data-skin="minimal" class="skin-btn flex flex-col items-center gap-1 p-1.5 rounded-lg border-2 border-indigo-500 bg-slate-50">
+            <span class="w-6 h-6 rounded-full bg-white border border-slate-300 shadow-xs"></span>
+            <span class="text-[11px] font-medium">留白</span>
+          </button>
+          <button data-skin="journal" class="skin-btn flex flex-col items-center gap-1 p-1.5 rounded-lg border border-slate-200 hover:border-slate-300">
+            <span class="w-6 h-6 rounded-full bg-[#fdfbf7] border border-amber-200"></span>
+            <span class="text-[11px] font-medium">手账</span>
+          </button>
+          <button data-skin="dark" class="skin-btn flex flex-col items-center gap-1 p-1.5 rounded-lg border border-slate-200 hover:border-slate-300">
+            <span class="w-6 h-6 rounded-full bg-slate-900"></span>
+            <span class="text-[11px] font-medium">暗夜</span>
+          </button>
+          <button data-skin="aurora" class="skin-btn flex flex-col items-center gap-1 p-1.5 rounded-lg border border-slate-200 hover:border-slate-300">
+            <span class="w-6 h-6 rounded-full bg-gradient-to-tr from-rose-200 via-purple-200 to-sky-200"></span>
+            <span class="text-[11px] font-medium">弥散</span>
+          </button>
+          <button data-skin="editorial" class="skin-btn flex flex-col items-center gap-1 p-1.5 rounded-lg border border-slate-200 hover:border-slate-300">
+            <span class="w-6 h-6 rounded-full bg-[#f4f1ea] border-2 border-zinc-800"></span>
+            <span class="text-[11px] font-medium">报刊</span>
+          </button>
+        </div>
+
+        <div class="flex items-center justify-between pt-1">
+          <div class="flex items-center gap-1.5">
+            <button onclick="setAccent('#6366f1')" class="w-5 h-5 rounded-full bg-[#6366f1] hover:scale-110 transition"></button>
+            <button onclick="setAccent('#ec4899')" class="w-5 h-5 rounded-full bg-[#ec4899] hover:scale-110 transition"></button>
+            <button onclick="setAccent('#f59e0b')" class="w-5 h-5 rounded-full bg-[#f59e0b] hover:scale-110 transition"></button>
+            <button onclick="setAccent('#10b981')" class="w-5 h-5 rounded-full bg-[#10b981] hover:scale-110 transition"></button>
+            <button onclick="setAccent('#0ea5e9')" class="w-5 h-5 rounded-full bg-[#0ea5e9] hover:scale-110 transition"></button>
+            <input type="color" id="customColorPicker" value="#6366f1" onchange="setAccent(this.value)" title="自定义强调色" class="w-6 h-6 rounded cursor-pointer border-0 bg-transparent" />
+          </div>
+
+          <select id="fontSelector" class="text-xs border border-slate-200 rounded-lg px-2.5 py-1.5 bg-white focus:outline-none">
+            <option value="font-sans-custom">现代黑体</option>
+            <option value="font-serif-custom">文艺宋体</option>
+            <option value="font-mono-custom">极客等宽</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- 4. 尺寸与排版微调 -->
+      <section class="space-y-3">
+        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400">4. 尺寸与排版</label>
+        <div class="grid grid-cols-3 gap-2">
+          <button data-ratio="ratio-3-4" class="ratio-btn py-1.5 text-xs font-medium rounded-lg border-2 border-indigo-500 bg-indigo-50/50 text-indigo-700">3:4 小红书</button>
+          <button data-ratio="ratio-1-1" class="ratio-btn py-1.5 text-xs font-medium rounded-lg border border-slate-200 text-slate-600">1:1 方图</button>
+          <button data-ratio="ratio-auto" class="ratio-btn py-1.5 text-xs font-medium rounded-lg border border-slate-200 text-slate-600">自适应高度</button>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 pt-1">
+          <div>
+            <div class="flex justify-between text-xs text-slate-500 mb-1">
+              <span>正文字号</span><span id="fontSizeVal">16px</span>
+            </div>
+            <input id="fontSizeSlider" type="range" min="13" max="22" value="16" class="w-full accent-indigo-600" />
+          </div>
+          <div>
+            <div class="flex justify-between text-xs text-slate-500 mb-1">
+              <span>卡片留白</span><span id="paddingVal">36px</span>
+            </div>
+            <input id="paddingSlider" type="range" min="20" max="56" value="36" class="w-full accent-indigo-600" />
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. 署名与底部信息 -->
+      <section class="space-y-3 pb-4">
+        <div class="flex items-center justify-between">
+          <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400">5. 创作者署名与水印</label>
+          <span id="profileSyncTip" class="text-[11px] text-emerald-600 hidden">✓ 已同步登录档案</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <label class="cursor-pointer shrink-0 w-10 h-10 rounded-full border border-dashed border-slate-300 flex items-center justify-center overflow-hidden bg-slate-50 hover:border-indigo-400" title="点击上传本地头像">
+            <img id="avatarPreviewSmall" class="w-full h-full object-cover hidden" />
+            <span id="avatarPlaceholderSmall" class="text-xs text-slate-400">+头像</span>
+            <input type="file" id="avatarInput" accept="image/*" class="hidden" />
+          </label>
+          <input id="inputAuthor" type="text" placeholder="你的昵称 / 公众号" class="flex-1 px-3 py-2 text-xs rounded-lg border border-slate-200 focus:outline-none" />
+          <input id="inputHandle" type="text" placeholder="@账号ID" class="w-28 px-3 py-2 text-xs rounded-lg border border-slate-200 focus:outline-none" />
+        </div>
+
+        <div class="flex flex-wrap gap-4 text-xs text-slate-600 pt-1">
+          <label class="flex items-center gap-1.5 cursor-pointer">
+            <input type="checkbox" id="toggleDate" checked class="rounded text-indigo-600" /> 显示日期
+          </label>
+          <label class="flex items-center gap-1.5 cursor-pointer">
+            <input type="checkbox" id="toggleReadTime" checked class="rounded text-indigo-600" /> 字数统计
+          </label>
+          <label class="flex items-center gap-1.5 cursor-pointer">
+            <input type="checkbox" id="toggleWatermark" checked class="rounded text-indigo-600" /> 底部灵感签水印
+          </label>
+        </div>
+      </section>
+    </aside>
+
+    <!-- 右侧实时画布预览与导出 -->
+    <section class="flex-1 bg-slate-100/80 flex flex-col items-center justify-between p-6 overflow-y-auto">
+
+      <!-- 顶部导出操作栏 -->
+      <div class="w-full max-w-2xl flex flex-wrap items-center justify-between gap-3 bg-white/90 backdrop-blur px-4 py-2.5 rounded-xl border border-slate-200/80 shadow-xs mb-6">
+        <span class="text-xs text-slate-500 flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 实时渲染 · 自动保存草稿
+        </span>
+
+        <div class="flex items-center gap-2">
+          <select id="exportScale" class="text-xs border border-slate-200 rounded-lg px-2 py-1.5 bg-white text-slate-600">
+            <option value="2">2x 高清导出</option>
+            <option value="3">3x 超清印刷</option>
+          </select>
+
+          <button onclick="copyCardImage()" id="copyBtn" class="px-3 py-1.5 text-xs font-medium rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 transition">
+            📋 复制图片
+          </button>
+
+          <button onclick="downloadCard()" id="downloadBtn" class="px-4 py-1.5 text-xs font-semibold rounded-lg text-white shadow-sm hover:opacity-90 transition flex items-center gap-1.5" style="background-color: var(--accent-color);">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            下载 PNG 卡片
+          </button>
+        </div>
+      </div>
+
+      <!-- 核心卡片渲染舞台 -->
+      <div class="my-auto py-2 flex items-center justify-center w-full">
+        <div id="captureCard" class="skin-minimal ratio-3-4 font-sans-custom rounded-2xl flex flex-col justify-between transition-all duration-200 relative overflow-hidden" style="padding: 36px;">
+
+          <div>
+            <div class="flex items-center justify-between mb-5">
+              <span id="cardTag" class="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full" style="background-color: var(--accent-soft); color: var(--accent-color);">
+                ✦ 每日灵感摘录
+              </span>
+              <span id="cardDate" class="text-xs opacity-50 font-mono">2026.11.16</span>
+            </div>
+
+            <h1 id="cardTitle" class="text-xl font-bold leading-snug mb-4 tracking-tight">
+              把复杂的事情变简单，本身就是一种稀缺能力
+            </h1>
+
+            <div id="cardBody" class="leading-relaxed space-y-3 whitespace-pre-wrap break-words opacity-90" style="font-size: 16px;"></div>
+          </div>
+
+          <div class="pt-6 mt-6 card-footer-divider flex items-center justify-between gap-3">
+            <div class="flex items-center gap-2.5">
+              <div id="cardAvatarWrap" class="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0 overflow-hidden" style="background-color: var(--accent-color);">
+                <img id="cardAvatarImg" class="w-full h-full object-cover hidden" />
+                <span id="cardAvatarFallback">灵</span>
+              </div>
+              <div>
+                <div id="cardAuthor" class="text-xs font-bold leading-tight">灵感观察员</div>
+                <div id="cardHandle" class="text-[11px] opacity-55 mt-0.5">@VibeNote</div>
+              </div>
+            </div>
+
+            <div class="text-right">
+              <div id="cardReadTime" class="text-[11px] opacity-50">约 120 字</div>
+              <div id="cardWatermark" class="text-[10px] opacity-40 font-medium mt-0.5">Made with VibeNote 灵感签</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <p class="text-[11px] text-slate-400 mt-6">提示：登录后可将常用卡片样式与署名保存至「创作者灵感库」，随时一键调用</p>
+    </section>
+  </main>
+
+  <!-- ================= 登录 / 注册模态框 ================= -->
+  <div id="authModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 backdrop-blur-xs p-4">
+    <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl border border-slate-200 overflow-hidden">
+      <div class="px-6 pt-6 pb-4 flex items-start justify-between">
+        <div>
+          <div class="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-0.5 rounded-full bg-indigo-50 text-indigo-600 mb-2">
+            ✨ VibeNote 创作者空间
+          </div>
+          <h2 id="authModalTitle" class="text-xl font-bold text-slate-900">欢迎回来，创作者</h2>
+          <p class="text-xs text-slate-500 mt-1">登录后自动锁定你的专属名片署名，并解锁本地灵感收藏库</p>
+        </div>
+        <button onclick="closeAuthModal()" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+      </div>
+
+      <div class="px-6">
+        <div class="grid grid-cols-2 bg-slate-100 p-1 rounded-xl text-xs font-semibold">
+          <button id="tabLoginBtn" onclick="switchAuthMode('login')" class="py-2 rounded-lg bg-white text-slate-900 shadow-xs transition">账号登录</button>
+          <button id="tabRegisterBtn" onclick="switchAuthMode('register')" class="py-2 rounded-lg text-slate-500 hover:text-slate-800 transition">创建新档案</button>
+        </div>
+      </div>
+
+      <form id="authForm" onsubmit="handleAuthSubmit(event)" class="p-6 space-y-4">
+        <div id="registerFields" class="hidden space-y-3">
+          <div>
+            <label class="block text-xs font-medium text-slate-700 mb-1">创作者昵称（自动同步至卡片署名）</label>
+            <input id="authNickname" type="text" placeholder="例如：林间读书笔记" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 focus:outline-none focus:border-indigo-500" />
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-slate-700 mb-1">社媒账号 ID（可选）</label>
+            <input id="authHandle" type="text" placeholder="例如：@LinReading" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 focus:outline-none focus:border-indigo-500" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-slate-700 mb-1">邮箱或用户名</label>
+          <input id="authEmail" type="text" required placeholder="creator@vibenote.app" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 focus:outline-none focus:border-indigo-500" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-slate-700 mb-1">密码</label>
+          <div class="relative">
+            <input id="authPassword" type="password" required placeholder="请输入密码（不少于 4 位）" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 focus:outline-none focus:border-indigo-500 pr-10" />
+            <button type="button" onclick="togglePasswordVis()" class="absolute right-3 top-2.5 text-xs text-slate-400 hover:text-slate-600">显示</button>
+          </div>
+        </div>
+
+        <p id="authErrorMsg" class="text-xs text-rose-500 hidden"></p>
+
+        <button type="submit" id="authSubmitBtn" class="w-full py-2.5 rounded-xl text-sm font-semibold text-white shadow-md hover:opacity-95 transition" style="background-color: var(--accent-color);">
+          立即登录并进入工作台
+        </button>
+
+        <div class="relative flex py-1 items-center">
+          <div class="flex-grow border-t border-slate-200"></div>
+          <span class="shrink mx-3 text-[11px] text-slate-400">或</span>
+          <div class="flex-grow border-t border-slate-200"></div>
+        </div>
+
+        <button type="button" onclick="guestQuickLogin()" class="w-full py-2 rounded-xl text-xs font-medium border border-slate-200 text-slate-600 hover:bg-slate-50 transition">
+          ⚡ 一键体验示范创作者账号
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= 灵感收藏库侧滑抽屉 ================= -->
+  <div id="savedDrawer" class="fixed inset-0 z-50 hidden justify-end bg-slate-900/40 backdrop-blur-xs">
+    <div class="bg-white w-full max-w-md h-full shadow-2xl flex flex-col">
+      <div class="p-5 border-b border-slate-200 flex items-center justify-between">
+        <div>
+          <h3 class="font-bold text-slate-900 text-base">📚 我的灵感卡片收藏库</h3>
+          <p class="text-xs text-slate-400 mt-0.5">点击任意卡片即可一键恢复文案与皮肤配置</p>
+        </div>
+        <button onclick="closeSavedDrawer()" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+      </div>
+
+      <div id="savedListContainer" class="flex-1 overflow-y-auto p-5 space-y-3"></div>
+    </div>
+  </div>
+
+  <script>
+    const DRAFT_KEY = 'vibenote_draft_v2';
+    const USER_KEY = 'vibenote_current_user';
+    const USERS_DB_KEY = 'vibenote_users_db';
+    const LIBRARY_KEY = 'vibenote_saved_cards';
+
+    let authMode = 'login';
+    let currentUser = null;
+
+    const templates = {
+      quote: {
+        tag: '✦ 认知金句',
+        title: '把复杂的事情变简单，本身就是一种稀缺能力',
+        body: '大多数人做产品时总想做加法，觉得功能越多越有安全感。\n\n但真正让用户记住的，往往是**在某一个微小痛点上做到极致**。打开即用、用完即走，==不打扰用户的时间，才是最高级的体贴==。'
+      },
+      book: {
+        tag: '📚 读书笔记 · 《纳瓦尔宝典》',
+        title: '专长是无法通过培训获得的',
+        body: '1. 专长往往源于你内心深处的热爱与好奇心，而不是市场上的热门风口。\n2. 打造个人商业模式时，学会运用**代码与媒体**这两类零边际成本的杠杆。\n3. ==给自己设定一个极高的个人时薪==，把低价值琐事全部外包或自动化。'
+      },
+      build: {
+        tag: '🚀 独立开发周报 #01',
+        title: '从 0 到 1 上线我的第一个网页工具',
+        body: '这周没有写一行后端代码，用纯前端做完了「VibeNote 灵感签」：\n\n• 解决了发小红书/即刻时**纯文本排版单调**的问题\n• 内置 5 套高颜值卡片皮肤与本地高清导出\n• ==完成永远比完美更重要==，先发布再迭代！'
+      },
+      list: {
+        tag: '📝 效率干货清单',
+        title: '每天睡前 10 分钟复盘的 3 个问题',
+        body: '✅ **今日高光**：今天做的哪一件事最有成就感？\n✅ **能量黑洞**：什么事情消耗了情绪却没有产出？\n✅ **明日唯一**：如果明天只能完成一件事，==哪一件最重要==？'
+      }
+    };
+
+    const state = {
+      tag: templates.quote.tag,
+      title: templates.quote.title,
+      body: templates.quote.body,
+      skin: 'minimal',
+      ratio: 'ratio-3-4',
+      accent: '#6366f1',
+      font: 'font-sans-custom',
+      fontSize: 16,
+      padding: 36,
+      author: '灵感观察员',
+      handle: '@VibeNote',
+      avatar: '',
+      showDate: true,
+      showReadTime: true,
+      showWatermark: true
+    };
+
+    const els = {
+      inputTag: document.getElementById('inputTag'),
+      inputTitle: document.getElementById('inputTitle'),
+      inputBody: document.getElementById('inputBody'),
+      inputAuthor: document.getElementById('inputAuthor'),
+      inputHandle: document.getElementById('inputHandle'),
+      fontSelector: document.getElementById('fontSelector'),
+      fontSizeSlider: document.getElementById('fontSizeSlider'),
+      paddingSlider: document.getElementById('paddingSlider'),
+      toggleDate: document.getElementById('toggleDate'),
+      toggleReadTime: document.getElementById('toggleReadTime'),
+      toggleWatermark: document.getElementById('toggleWatermark'),
+      captureCard: document.getElementById('captureCard')
+    };
+
+    /* 工具：将 Hex 颜色转为 html2canvas 100% 兼容的标准 rgba 字符串 */
+    function hexToRgba(hex, alpha) {
+      let clean = (hex || '#6366f1').replace('#', '');
+      if (clean.length === 3) {
+        clean = clean.split('').map(c => c + c).join('');
+      }
+      const num = parseInt(clean, 16);
+      if (isNaN(num)) return `rgba(99, 102, 241, ${alpha})`;
+      const r = (num >> 16) & 255;
+      const g = (num >> 8) & 255;
+      const b = num & 255;
+      return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    }
+
+    /* ================= 登录与账户系统 ================= */
+    function openAuthModal() {
+      document.getElementById('authErrorMsg').classList.add('hidden');
+      document.getElementById('authModal').classList.remove('hidden');
+      document.getElementById('authModal').classList.add('flex');
+    }
+
+    function closeAuthModal() {
+      document.getElementById('authModal').classList.add('hidden');
+      document.getElementById('authModal').classList.remove('flex');
+    }
+
+    function switchAuthMode(mode) {
+      authMode = mode;
+      const isReg = mode === 'register';
+      document.getElementById('registerFields').classList.toggle('hidden', !isReg);
+      document.getElementById('authModalTitle').textContent = isReg ? '创建创作者档案' : '欢迎回来，创作者';
+      document.getElementById('authSubmitBtn').textContent = isReg ? '注册并锁定创作者名片' : '立即登录并进入工作台';
+      document.getElementById('tabLoginBtn').className = !isReg
+        ? 'py-2 rounded-lg bg-white text-slate-900 shadow-xs transition'
+        : 'py-2 rounded-lg text-slate-500 hover:text-slate-800 transition';
+      document.getElementById('tabRegisterBtn').className = isReg
+        ? 'py-2 rounded-lg bg-white text-slate-900 shadow-xs transition'
+        : 'py-2 rounded-lg text-slate-500 hover:text-slate-800 transition';
+    }
+
+    function togglePasswordVis() {
+      const pwd = document.getElementById('authPassword');
+      pwd.type = pwd.type === 'password' ? 'text' : 'password';
+    }
+
+    function handleAuthSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('authEmail').value.trim();
+      const password = document.getElementById('authPassword').value.trim();
+      const errEl = document.getElementById('authErrorMsg');
+
+      if (password.length < 4) {
+        errEl.textContent = '密码长度至少需要 4 位字符';
+        errEl.classList.remove('hidden');
+        return;
+      }
+
+      let db = {};
+      try { db = JSON.parse(localStorage.getItem(USERS_DB_KEY)) || {}; } catch (e) {}
+
+      if (authMode === 'register') {
+        const nickname = document.getElementById('authNickname').value.trim() || email.split('@')[0];
+        let handle = document.getElementById('authHandle').value.trim() || ('@' + email.split('@')[0]);
+        if (!handle.startsWith('@')) handle = '@' + handle;
+
+        db[email] = { email, password, nickname, handle };
+        localStorage.setItem(USERS_DB_KEY, JSON.stringify(db));
+        completeLogin(db[email]);
+      } else {
+        if (db[email] && db[email].password !== password) {
+          errEl.textContent = '密码错误，请重新输入（或点击下方一键体验示范账号）';
+          errEl.classList.remove('hidden');
+          return;
+        }
+        const userObj = db[email] || {
+          email,
+          nickname: email.split('@')[0],
+          handle: '@' + email.split('@')[0]
+        };
+        completeLogin(userObj);
+      }
+    }
+
+    function guestQuickLogin() {
+      completeLogin({
+        email: 'demo@vibenote.app',
+        nickname: '灵感主理人',
+        handle: '@VibeCreator'
+      });
+    }
+
+    function completeLogin(user) {
+      currentUser = user;
+      localStorage.setItem(USER_KEY, JSON.stringify(user));
+
+      state.author = user.nickname;
+      state.handle = user.handle;
+      syncInputsFromState();
+      render();
+      updateAuthUI();
+      closeAuthModal();
+    }
+
+    function logoutUser() {
+      currentUser = null;
+      localStorage.removeItem(USER_KEY);
+      updateAuthUI();
+    }
+
+    function updateAuthUI() {
+      const loginBtn = document.getElementById('loginOpenBtn');
+      const badgeWrap = document.getElementById('userBadgeWrap');
+      const syncTip = document.getElementById('profileSyncTip');
+
+      if (currentUser) {
+        loginBtn.classList.add('hidden');
+        badgeWrap.classList.remove('hidden');
+        badgeWrap.classList.add('flex');
+        syncTip.classList.remove('hidden');
+        document.getElementById('userNameNav').textContent = currentUser.nickname;
+        document.getElementById('userAvatarNav').textContent = currentUser.nickname.charAt(0);
+      } else {
+        loginBtn.classList.remove('hidden');
+        badgeWrap.classList.add('hidden');
+        badgeWrap.classList.remove('flex');
+        syncTip.classList.add('hidden');
+      }
+      updateSavedCount();
+    }
+
+    /* ================= 灵感收藏库 ================= */
+    function getSavedCards() {
+      try { return JSON.parse(localStorage.getItem(LIBRARY_KEY)) || []; } catch (e) { return []; }
+    }
+
+    function updateSavedCount() {
+      document.getElementById('savedCountNav').textContent = getSavedCards().length;
+    }
+
+    function saveCurrentToLibrary() {
+      if (!currentUser) {
+        openAuthModal();
+        return;
+      }
+      const list = getSavedCards();
+      list.unshift({
+        id: Date.now(),
+        savedAt: new Date().toLocaleDateString(),
+        snapshot: { ...state }
+      });
+      localStorage.setItem(LIBRARY_KEY, JSON.stringify(list));
+      updateSavedCount();
+      openSavedDrawer();
+    }
+
+    function openSavedDrawer() {
+      renderSavedList();
+      document.getElementById('savedDrawer').classList.remove('hidden');
+      document.getElementById('savedDrawer').classList.add('flex');
+    }
+
+    function closeSavedDrawer() {
+      document.getElementById('savedDrawer').classList.add('hidden');
+      document.getElementById('savedDrawer').classList.remove('flex');
+    }
+
+    function renderSavedList() {
+      const container = document.getElementById('savedListContainer');
+      const list = getSavedCards();
+      if (!list.length) {
+        container.innerHTML = `<div class="text-center py-12 text-xs text-slate-400">暂无收藏卡片，点击左侧「💾 收藏当前卡片」即可保存常用模板</div>`;
+        return;
+      }
+      container.innerHTML = list.map(item => `
+        <div class="p-3.5 rounded-xl border border-slate-200 hover:border-indigo-400 bg-slate-50/60 transition flex items-start justify-between gap-3">
+          <div class="cursor-pointer flex-1" onclick="loadSavedCard(${item.id})">
+            <div class="text-[11px] text-indigo-600 font-semibold">${escapeHtml(item.snapshot.tag || '灵感卡片')} · ${item.savedAt}</div>
+            <div class="text-sm font-bold text-slate-800 mt-0.5 line-clamp-1">${escapeHtml(item.snapshot.title || '无标题卡片')}</div>
+            <div class="text-xs text-slate-500 mt-1 line-clamp-2">${escapeHtml(item.snapshot.body)}</div>
+          </div>
+          <button onclick="deleteSavedCard(${item.id})" class="text-xs text-slate-400 hover:text-rose-500 px-1.5 py-1">删除</button>
+        </div>
+      `).join('');
+    }
+
+    function loadSavedCard(id) {
+      const found = getSavedCards().find(i => i.id === id);
+      if (!found) return;
+      Object.assign(state, found.snapshot);
+      syncInputsFromState();
+      render();
+      closeSavedDrawer();
+    }
+
+    function deleteSavedCard(id) {
+      const next = getSavedCards().filter(i => i.id !== id);
+      localStorage.setItem(LIBRARY_KEY, JSON.stringify(next));
+      updateSavedCount();
+      renderSavedList();
+    }
+
+    /* ================= 核心画布渲染引擎 ================= */
+    function escapeHtml(str) {
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function formatRichText(text) {
+      let safe = escapeHtml(text);
+      safe = safe.replace(/\*\*(.+?)\*\*/g, '<strong class="font-bold">$1</strong>');
+      safe = safe.replace(/==(.+?)==/g, '<span class="vibe-highlight">$1</span>');
+      return safe;
+    }
+
+    function render() {
+      const rootStyle = document.documentElement.style;
+      rootStyle.setProperty('--accent-color', state.accent);
+      rootStyle.setProperty('--accent-soft', hexToRgba(state.accent, 0.14));
+      rootStyle.setProperty('--accent-highlight', hexToRgba(state.accent, 0.22));
+      rootStyle.setProperty('--accent-highlight-dark', hexToRgba(state.accent, 0.36));
+
+      const cardTag = document.getElementById('cardTag');
+      cardTag.textContent = state.tag;
+      cardTag.style.display = state.tag.trim() ? 'inline-flex' : 'none';
+      cardTag.style.backgroundColor = hexToRgba(state.accent, 0.14);
+      cardTag.style.color = state.accent;
+
+      const cardTitle = document.getElementById('cardTitle');
+      cardTitle.textContent = state.title;
+      cardTitle.style.display = state.title.trim() ? 'block' : 'none';
+
+      const cardBody = document.getElementById('cardBody');
+      cardBody.innerHTML = formatRichText(state.body);
+      cardBody.style.fontSize = state.fontSize + 'px';
+
+      els.captureCard.className = `skin-${state.skin} ${state.ratio} ${state.font} rounded-2xl flex flex-col justify-between transition-all duration-200 relative overflow-hidden`;
+      els.captureCard.style.padding = state.padding + 'px';
+
+      document.getElementById('fontSizeVal').textContent = state.fontSize + 'px';
+      document.getElementById('paddingVal').textContent = state.padding + 'px';
+
+      document.getElementById('cardAuthor').textContent = state.author || '匿名创作者';
+      document.getElementById('cardHandle').textContent = state.handle || '';
+      const fallbackChar = (state.author || '灵').trim().charAt(0);
+      document.getElementById('cardAvatarFallback').textContent = fallbackChar;
+
+      const cardAvatarImg = document.getElementById('cardAvatarImg');
+      const cardAvatarFallback = document.getElementById('cardAvatarFallback');
+      const previewSmall = document.getElementById('avatarPreviewSmall');
+      const placeholderSmall = document.getElementById('avatarPlaceholderSmall');
+
+      if (state.avatar) {
+        cardAvatarImg.src = state.avatar;
+        cardAvatarImg.classList.remove('hidden');
+        cardAvatarFallback.classList.add('hidden');
+        previewSmall.src = state.avatar;
+        previewSmall.classList.remove('hidden');
+        placeholderSmall.classList.add('hidden');
+      } else {
+        cardAvatarImg.classList.add('hidden');
+        cardAvatarFallback.classList.remove('hidden');
+        previewSmall.classList.add('hidden');
+        placeholderSmall.classList.remove('hidden');
+      }
+
+      const now = new Date();
+      const dateStr = `${now.getFullYear()}.${String(now.getMonth() + 1).padStart(2, '0')}.${String(now.getDate()).padStart(2, '0')}`;
+      const cardDate = document.getElementById('cardDate');
+      cardDate.textContent = dateStr;
+      cardDate.style.display = state.showDate ? 'inline' : 'none';
+
+      const cleanCount = (state.title + state.body).replace(/\s+/g, '').length;
+      const cardReadTime = document.getElementById('cardReadTime');
+      cardReadTime.textContent = `约 ${cleanCount} 字`;
+      cardReadTime.style.display = state.showReadTime ? 'block' : 'none';
+
+      document.getElementById('cardWatermark').style.display = state.showWatermark ? 'block' : 'none';
+
+      document.querySelectorAll('.skin-btn').forEach(btn => {
+        const active = btn.dataset.skin === state.skin;
+        btn.className = active
+          ? 'skin-btn flex flex-col items-center gap-1 p-1.5 rounded-lg border-2 border-indigo-500 bg-slate-50'
+          : 'skin-btn flex flex-col items-center gap-1 p-1.5 rounded-lg border border-slate-200 hover:border-slate-300';
+      });
+
+      document.querySelectorAll('.ratio-btn').forEach(btn => {
+        const active = btn.dataset.ratio === state.ratio;
+        btn.className = active
+          ? 'ratio-btn py-1.5 text-xs font-medium rounded-lg border-2 border-indigo-500 bg-indigo-50/50 text-indigo-700'
+          : 'ratio-btn py-1.5 text-xs font-medium rounded-lg border border-slate-200 text-slate-600';
+      });
+
+      try { localStorage.setItem(DRAFT_KEY, JSON.stringify(state)); } catch (e) {}
+    }
+
+    function syncInputsFromState() {
+      els.inputTag.value = state.tag;
+      els.inputTitle.value = state.title;
+      els.inputBody.value = state.body;
+      els.inputAuthor.value = state.author;
+      els.inputHandle.value = state.handle;
+      els.fontSelector.value = state.font;
+      els.fontSizeSlider.value = state.fontSize;
+      els.paddingSlider.value = state.padding;
+      els.toggleDate.checked = state.showDate;
+      els.toggleReadTime.checked = state.showReadTime;
+      els.toggleWatermark.checked = state.showWatermark;
+      document.getElementById('customColorPicker').value = state.accent;
+    }
+
+    function applyTemplate(key) {
+      const tpl = templates[key];
+      if (!tpl) return;
+      state.tag = tpl.tag;
+      state.title = tpl.title;
+      state.body = tpl.body;
+      syncInputsFromState();
+      render();
+    }
+
+    function setAccent(hex) {
+      state.accent = hex;
+      document.getElementById('customColorPicker').value = hex;
+      render();
+    }
+
+    function wrapSelection(token) {
+      const textarea = els.inputBody;
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      const selected = textarea.value.substring(start, end) || '重点内容';
+      const replacement = `${token}${selected}${token}`;
+      textarea.setRangeText(replacement, start, end, 'select');
+      state.body = textarea.value;
+      textarea.focus();
+      render();
+    }
+
+    function resetAll() {
+      localStorage.removeItem(DRAFT_KEY);
+      Object.assign(state, {
+        tag: templates.quote.tag,
+        title: templates.quote.title,
+        body: templates.quote.body,
+        skin: 'minimal',
+        ratio: 'ratio-3-4',
+        accent: '#6366f1',
+        font: 'font-sans-custom',
+        fontSize: 16,
+        padding: 36,
+        author: currentUser ? currentUser.nickname : '灵感观察员',
+        handle: currentUser ? currentUser.handle : '@VibeNote',
+        avatar: '',
+        showDate: true,
+        showReadTime: true,
+        showWatermark: true
+      });
+      syncInputsFromState();
+      render();
+    }
+
+    /* 核心修复：在克隆 DOM 中清理 Tailwind 现代 color()/oklch() 声明，确保 html2canvas 零报错 */
+    async function renderCanvas() {
+      const scale = Number(document.getElementById('exportScale').value) || 2;
+      return await html2canvas(els.captureCard, {
+        scale,
+        useCORS: true,
+        backgroundColor: null,
+        onclone: (clonedDoc) => {
+          // 清理克隆文档中可能触发 html2canvas 崩溃的现代 color() / oklch() 样式表规则
+          clonedDoc.querySelectorAll('style').forEach(styleEl => {
+            if (styleEl.textContent && (styleEl.textContent.includes('oklch(') || styleEl.textContent.includes('color('))) {
+              styleEl.textContent = styleEl.textContent
+                .replace(/oklch\([^)]+\)/g, 'transparent')
+                .replace(/color\([^)]+\)/g, 'transparent');
+            }
+          });
+          // 确保高亮标签在克隆节点中也拥有明确的内联 rgba 颜色
+          const hlBg = hexToRgba(state.accent, state.skin === 'dark' ? 0.36 : 0.22);
+          clonedDoc.querySelectorAll('.vibe-highlight').forEach(el => {
+            el.style.backgroundColor = hlBg;
+            el.style.borderBottom = `2px solid ${state.accent}`;
+          });
+        }
+      });
+    }
+
+    async function downloadCard() {
+      const btn = document.getElementById('downloadBtn');
+      const oldHtml = btn.innerHTML;
+      btn.textContent = '生成中...';
+      btn.disabled = true;
+      try {
+        const canvas = await renderCanvas();
+        const link = document.createElement('a');
+        link.download = `VibeNote-灵感签-${Date.now()}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      } catch (err) {
+        alert('导出失败，请重试：' + err.message);
+      } finally {
+        btn.innerHTML = oldHtml;
+        btn.disabled = false;
+      }
+    }
+
+    async function copyCardImage() {
+      const btn = document.getElementById('copyBtn');
+      const oldText = btn.textContent;
+      btn.textContent = '复制中...';
+      try {
+        const canvas = await renderCanvas();
+        canvas.toBlob(async (blob) => {
+          await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+          btn.textContent = '✅ 已复制';
+          setTimeout(() => (btn.textContent = oldText), 1800);
+        });
+      } catch (err) {
+        btn.textContent = oldText;
+        alert('当前浏览器不支持直接写入剪贴板，请使用右侧「下载 PNG 卡片」按钮。');
+      }
+    }
+
+    els.inputTag.addEventListener('input', e => { state.tag = e.target.value; render(); });
+    els.inputTitle.addEventListener('input', e => { state.title = e.target.value; render(); });
+    els.inputBody.addEventListener('input', e => { state.body = e.target.value; render(); });
+    els.inputAuthor.addEventListener('input', e => { state.author = e.target.value; render(); });
+    els.inputHandle.addEventListener('input', e => { state.handle = e.target.value; render(); });
+    els.fontSelector.addEventListener('change', e => { state.font = e.target.value; render(); });
+    els.fontSizeSlider.addEventListener('input', e => { state.fontSize = Number(e.target.value); render(); });
+    els.paddingSlider.addEventListener('input', e => { state.padding = Number(e.target.value); render(); });
+    els.toggleDate.addEventListener('change', e => { state.showDate = e.target.checked; render(); });
+    els.toggleReadTime.addEventListener('change', e => { state.showReadTime = e.target.checked; render(); });
+    els.toggleWatermark.addEventListener('change', e => { state.showWatermark = e.target.checked; render(); });
+
+    document.querySelectorAll('.skin-btn').forEach(btn => {
+      btn.addEventListener('click', () => { state.skin = btn.dataset.skin; render(); });
+    });
+
+    document.querySelectorAll('.ratio-btn').forEach(btn => {
+      btn.addEventListener('click', () => { state.ratio = btn.dataset.ratio; render(); });
+    });
+
+    document.getElementById('avatarInput').addEventListener('change', e => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = ev => { state.avatar = ev.target.result; render(); };
+      reader.readAsDataURL(file);
+    });
+
+    // 初始化加载本地状态与登录账户
+    try {
+      const savedDraft = JSON.parse(localStorage.getItem(DRAFT_KEY));
+      if (savedDraft) Object.assign(state, savedDraft);
+      const savedUser = JSON.parse(localStorage.getItem(USER_KEY));
+      if (savedUser) currentUser = savedUser;
+    } catch (e) {}
+
+    syncInputsFromState();
+    updateAuthUI();
+    render();
+  </script>
+</body>
+</html>
