@@ -4,26 +4,34 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VibeNote · 灵感签 — 纯文本一键生成高颜值分享卡片</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>/* Tailwind CSS v3.4 (MIT), 预编译内联 */
+*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width:640px){.container{max-width:640px}}@media (min-width:768px){.container{max-width:768px}}@media (min-width:1024px){.container{max-width:1024px}}@media (min-width:1280px){.container{max-width:1280px}}@media (min-width:1536px){.container{max-width:1536px}}.pointer-events-none{pointer-events:none}.visible{visibility:visible}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0}.bottom-6{bottom:1.5rem}.left-1\/2{left:50%}.right-3{right:.75rem}.top-0{top:0}.top-2\.5{top:.625rem}.z-30{z-index:30}.z-50{z-index:50}.z-\[55\]{z-index:55}.z-\[60\]{z-index:60}.mx-3{margin-left:.75rem;margin-right:.75rem}.my-auto{margin-top:auto;margin-bottom:auto}.mb-1{margin-bottom:.25rem}.mb-2{margin-bottom:.5rem}.mb-4{margin-bottom:1rem}.mb-5{margin-bottom:1.25rem}.mb-6{margin-bottom:1.5rem}.mt-0\.5{margin-top:.125rem}.mt-1{margin-top:.25rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.line-clamp-1{-webkit-line-clamp:1}.line-clamp-1,.line-clamp-2{overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical}.line-clamp-2{-webkit-line-clamp:2}.block{display:block}.inline{display:inline}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-10{height:2.5rem}.h-2{height:.5rem}.h-3\.5{height:.875rem}.h-4{height:1rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-8{height:2rem}.h-9{height:2.25rem}.h-full{height:100%}.max-h-\[70vh\]{max-height:70vh}.min-h-screen{min-height:100vh}.w-10{width:2.5rem}.w-2{width:.5rem}.w-24{width:6rem}.w-28{width:7rem}.w-3\.5{width:.875rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-6{width:1.5rem}.w-8{width:2rem}.w-9{width:2.25rem}.w-full{width:100%}.min-w-0{min-width:0}.max-w-2xl{max-width:42rem}.max-w-\[430px\]{max-width:430px}.max-w-\[96px\]{max-width:96px}.max-w-md{max-width:28rem}.max-w-sm{max-width:24rem}.flex-1{flex:1 1 0%}.flex-shrink,.shrink{flex-shrink:1}.shrink-0{flex-shrink:0}.flex-grow{flex-grow:1}.-translate-x-1\/2{--tw-translate-x:-50%}.-translate-x-1\/2,.translate-y-2{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.translate-y-2{--tw-translate-y:0.5rem}.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.cursor-pointer{cursor:pointer}.resize-y{resize:vertical}.resize{resize:both}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.gap-1\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-2\.5{gap:.625rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.space-y-3>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.75rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.75rem*var(--tw-space-y-reverse))}.space-y-4>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem*var(--tw-space-y-reverse))}.space-y-6>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem*var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.truncate{overflow:hidden;text-overflow:ellipsis}.truncate,.whitespace-nowrap{white-space:nowrap}.whitespace-pre-wrap{white-space:pre-wrap}.break-words{overflow-wrap:break-word}.rounded{border-radius:.25rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-0{border-width:0}.border-2{border-width:2px}.border-b{border-bottom-width:1px}.border-r{border-right-width:1px}.border-t{border-top-width:1px}.border-dashed{border-style:dashed}.border-amber-200{--tw-border-opacity:1;border-color:rgb(253 230 138/var(--tw-border-opacity,1))}.border-indigo-100{--tw-border-opacity:1;border-color:rgb(224 231 255/var(--tw-border-opacity,1))}.border-indigo-500{--tw-border-opacity:1;border-color:rgb(99 102 241/var(--tw-border-opacity,1))}.border-slate-200{--tw-border-opacity:1;border-color:rgb(226 232 240/var(--tw-border-opacity,1))}.border-slate-200\/80{border-color:rgba(226,232,240,.8)}.border-slate-300{--tw-border-opacity:1;border-color:rgb(203 213 225/var(--tw-border-opacity,1))}.border-white\/40{border-color:hsla(0,0%,100%,.4)}.border-zinc-800{--tw-border-opacity:1;border-color:rgb(39 39 42/var(--tw-border-opacity,1))}.bg-\[\#0ea5e9\]{--tw-bg-opacity:1;background-color:rgb(14 165 233/var(--tw-bg-opacity,1))}.bg-\[\#10b981\]{--tw-bg-opacity:1;background-color:rgb(16 185 129/var(--tw-bg-opacity,1))}.bg-\[\#6366f1\]{--tw-bg-opacity:1;background-color:rgb(99 102 241/var(--tw-bg-opacity,1))}.bg-\[\#ec4899\]{--tw-bg-opacity:1;background-color:rgb(236 72 153/var(--tw-bg-opacity,1))}.bg-\[\#f4f1ea\]{--tw-bg-opacity:1;background-color:rgb(244 241 234/var(--tw-bg-opacity,1))}.bg-\[\#f59e0b\]{--tw-bg-opacity:1;background-color:rgb(245 158 11/var(--tw-bg-opacity,1))}.bg-\[\#fdfbf7\]{--tw-bg-opacity:1;background-color:rgb(253 251 247/var(--tw-bg-opacity,1))}.bg-amber-100{--tw-bg-opacity:1;background-color:rgb(254 243 199/var(--tw-bg-opacity,1))}.bg-amber-50{--tw-bg-opacity:1;background-color:rgb(255 251 235/var(--tw-bg-opacity,1))}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129/var(--tw-bg-opacity,1))}.bg-indigo-50{--tw-bg-opacity:1;background-color:rgb(238 242 255/var(--tw-bg-opacity,1))}.bg-indigo-50\/50{background-color:rgba(238,242,255,.5)}.bg-slate-100{--tw-bg-opacity:1;background-color:rgb(241 245 249/var(--tw-bg-opacity,1))}.bg-slate-100\/80{background-color:rgba(241,245,249,.8)}.bg-slate-100\/90{background-color:rgba(241,245,249,.9)}.bg-slate-50{--tw-bg-opacity:1;background-color:rgb(248 250 252/var(--tw-bg-opacity,1))}.bg-slate-50\/60{background-color:rgba(248,250,252,.6)}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42/var(--tw-bg-opacity,1))}.bg-slate-900\/40{background-color:rgba(15,23,42,.4)}.bg-slate-900\/50{background-color:rgba(15,23,42,.5)}.bg-slate-900\/85{background-color:rgba(15,23,42,.85)}.bg-transparent{background-color:transparent}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1))}.bg-white\/25{background-color:hsla(0,0%,100%,.25)}.bg-white\/90{background-color:hsla(0,0%,100%,.9)}.bg-gradient-to-tr{background-image:linear-gradient(to top right,var(--tw-gradient-stops))}.from-rose-200{--tw-gradient-from:#fecdd3 var(--tw-gradient-from-position);--tw-gradient-to:rgba(254,205,211,0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.via-purple-200{--tw-gradient-to:rgba(233,213,255,0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),#e9d5ff var(--tw-gradient-via-position),var(--tw-gradient-to)}.to-sky-200{--tw-gradient-to:#bae6fd var(--tw-gradient-to-position)}.object-contain{-o-object-fit:contain;object-fit:contain}.object-cover{-o-object-fit:cover;object-fit:cover}.p-1{padding:.25rem}.p-1\.5{padding:.375rem}.p-2{padding:.5rem}.p-3\.5{padding:.875rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.px-1\.5{padding-left:.375rem;padding-right:.375rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-2\.5{padding-left:.625rem;padding-right:.625rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-3\.5{padding-left:.875rem;padding-right:.875rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-0\.5{padding-top:.125rem;padding-bottom:.125rem}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-2\.5{padding-top:.625rem;padding-bottom:.625rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}.pb-2{padding-bottom:.5rem}.pb-4{padding-bottom:1rem}.pl-2{padding-left:.5rem}.pr-1\.5{padding-right:.375rem}.pr-10{padding-right:2.5rem}.pt-1{padding-top:.25rem}.pt-6{padding-top:1.5rem}.text-left{text-align:left}.text-center{text-align:center}.text-right{text-align:right}.font-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-\[12px\]{font-size:12px}.text-base{font-size:1rem;line-height:1.5rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.italic{font-style:italic}.leading-relaxed{line-height:1.625}.leading-snug{line-height:1.375}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-.025em}.tracking-wider{letter-spacing:.05em}.text-amber-700{--tw-text-opacity:1;color:rgb(180 83 9/var(--tw-text-opacity,1))}.text-amber-900{--tw-text-opacity:1;color:rgb(120 53 15/var(--tw-text-opacity,1))}.text-emerald-600{--tw-text-opacity:1;color:rgb(5 150 105/var(--tw-text-opacity,1))}.text-indigo-600{--tw-text-opacity:1;color:rgb(79 70 229/var(--tw-text-opacity,1))}.text-indigo-700{--tw-text-opacity:1;color:rgb(67 56 202/var(--tw-text-opacity,1))}.text-rose-500{--tw-text-opacity:1;color:rgb(244 63 94/var(--tw-text-opacity,1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184/var(--tw-text-opacity,1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139/var(--tw-text-opacity,1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105/var(--tw-text-opacity,1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85/var(--tw-text-opacity,1))}.text-slate-800{--tw-text-opacity:1;color:rgb(30 41 59/var(--tw-text-opacity,1))}.text-slate-900{--tw-text-opacity:1;color:rgb(15 23 42/var(--tw-text-opacity,1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.accent-indigo-600{accent-color:#4f46e5}.opacity-0{opacity:0}.opacity-40{opacity:.4}.opacity-50{opacity:.5}.opacity-55{opacity:.55}.opacity-90{opacity:.9}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgba(0,0,0,.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color)}.shadow-2xl,.shadow-lg{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color),0 4px 6px -4px var(--tw-shadow-color)}.shadow-md{--tw-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color),0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-sm,.shadow-xs{--tw-shadow:0 1px 2px 0 rgba(0,0,0,.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur{--tw-backdrop-blur:blur(8px)}.backdrop-blur,.backdrop-blur-xs{-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-xs{--tw-backdrop-blur:blur(2px)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.duration-200{transition-duration:.2s}.hover\:scale-110:hover{--tw-scale-x:1.1;--tw-scale-y:1.1;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:border-indigo-400:hover{--tw-border-opacity:1;border-color:rgb(129 140 248/var(--tw-border-opacity,1))}.hover\:border-slate-300:hover{--tw-border-opacity:1;border-color:rgb(203 213 225/var(--tw-border-opacity,1))}.hover\:bg-amber-200:hover{--tw-bg-opacity:1;background-color:rgb(253 230 138/var(--tw-bg-opacity,1))}.hover\:bg-indigo-50:hover{--tw-bg-opacity:1;background-color:rgb(238 242 255/var(--tw-bg-opacity,1))}.hover\:bg-indigo-50\/40:hover{background-color:rgba(238,242,255,.4)}.hover\:bg-rose-50:hover{--tw-bg-opacity:1;background-color:rgb(255 241 242/var(--tw-bg-opacity,1))}.hover\:bg-slate-100:hover{--tw-bg-opacity:1;background-color:rgb(241 245 249/var(--tw-bg-opacity,1))}.hover\:bg-slate-200:hover{--tw-bg-opacity:1;background-color:rgb(226 232 240/var(--tw-bg-opacity,1))}.hover\:bg-slate-50:hover{--tw-bg-opacity:1;background-color:rgb(248 250 252/var(--tw-bg-opacity,1))}.hover\:text-indigo-800:hover{--tw-text-opacity:1;color:rgb(55 48 163/var(--tw-text-opacity,1))}.hover\:text-rose-500:hover{--tw-text-opacity:1;color:rgb(244 63 94/var(--tw-text-opacity,1))}.hover\:text-rose-600:hover{--tw-text-opacity:1;color:rgb(225 29 72/var(--tw-text-opacity,1))}.hover\:text-slate-600:hover{--tw-text-opacity:1;color:rgb(71 85 105/var(--tw-text-opacity,1))}.hover\:text-slate-700:hover{--tw-text-opacity:1;color:rgb(51 65 85/var(--tw-text-opacity,1))}.hover\:text-slate-800:hover{--tw-text-opacity:1;color:rgb(30 41 59/var(--tw-text-opacity,1))}.hover\:text-slate-900:hover{--tw-text-opacity:1;color:rgb(15 23 42/var(--tw-text-opacity,1))}.hover\:opacity-90:hover{opacity:.9}.hover\:opacity-95:hover{opacity:.95}.focus\:border-indigo-500:focus{--tw-border-opacity:1;border-color:rgb(99 102 241/var(--tw-border-opacity,1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}@media (min-width:640px){.sm\:block{display:block}.sm\:inline-block{display:inline-block}.sm\:inline{display:inline}.sm\:hidden{display:none}.sm\:w-28{width:7rem}.sm\:gap-2\.5{gap:.625rem}.sm\:px-2\.5{padding-left:.625rem;padding-right:.625rem}.sm\:px-5{padding-left:1.25rem;padding-right:1.25rem}}@media (min-width:1024px){.lg\:w-\[420px\]{width:420px}.lg\:flex-row{flex-direction:row}}
+</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap" media="print" onload="this.media='all'" crossorigin="anonymous" />
+  <!-- html-to-image 1.11.11 (MIT) 内联，用浏览器原生渲染导出，避免 html2canvas 的文字错位 -->
+  <script>!function(t,e){"object"==typeof exports&&"undefined"!=typeof module?e(exports):"function"==typeof define&&define.amd?define(["exports"],e):e((t="undefined"!=typeof globalThis?globalThis:t||self).htmlToImage={})}(this,(function(t){"use strict";function e(t,e,n,r){return new(n||(n=Promise))((function(i,o){function u(t){try{a(r.next(t))}catch(t){o(t)}}function c(t){try{a(r.throw(t))}catch(t){o(t)}}function a(t){var e;t.done?i(t.value):(e=t.value,e instanceof n?e:new n((function(t){t(e)}))).then(u,c)}a((r=r.apply(t,e||[])).next())}))}function n(t,e){var n,r,i,o,u={label:0,sent:function(){if(1&i[0])throw i[1];return i[1]},trys:[],ops:[]};return o={next:c(0),throw:c(1),return:c(2)},"function"==typeof Symbol&&(o[Symbol.iterator]=function(){return this}),o;function c(c){return function(a){return function(c){if(n)throw new TypeError("Generator is already executing.");for(;o&&(o=0,c[0]&&(u=0)),u;)try{if(n=1,r&&(i=2&c[0]?r.return:c[0]?r.throw||((i=r.return)&&i.call(r),0):r.next)&&!(i=i.call(r,c[1])).done)return i;switch(r=0,i&&(c=[2&c[0],i.value]),c[0]){case 0:case 1:i=c;break;case 4:return u.label++,{value:c[1],done:!1};case 5:u.label++,r=c[1],c=[0];continue;case 7:c=u.ops.pop(),u.trys.pop();continue;default:if(!(i=u.trys,(i=i.length>0&&i[i.length-1])||6!==c[0]&&2!==c[0])){u=0;continue}if(3===c[0]&&(!i||c[1]>i[0]&&c[1]<i[3])){u.label=c[1];break}if(6===c[0]&&u.label<i[1]){u.label=i[1],i=c;break}if(i&&u.label<i[2]){u.label=i[2],u.ops.push(c);break}i[2]&&u.ops.pop(),u.trys.pop();continue}c=e.call(t,u)}catch(t){c=[6,t],r=0}finally{n=i=0}if(5&c[0])throw c[1];return{value:c[0]?c[1]:void 0,done:!0}}([c,a])}}}var r,i=(r=0,function(){return r+=1,"u".concat("0000".concat((Math.random()*Math.pow(36,4)<<0).toString(36)).slice(-4)).concat(r)});function o(t){for(var e=[],n=0,r=t.length;n<r;n++)e.push(t[n]);return e}function u(t,e){var n=(t.ownerDocument.defaultView||window).getComputedStyle(t).getPropertyValue(e);return n?parseFloat(n.replace("px","")):0}function c(t,e){void 0===e&&(e={});var n,r,i,o=e.width||(r=u(n=t,"border-left-width"),i=u(n,"border-right-width"),n.clientWidth+r+i),c=e.height||function(t){var e=u(t,"border-top-width"),n=u(t,"border-bottom-width");return t.clientHeight+e+n}(t);return{width:o,height:c}}var a=16384;function s(t,e){return void 0===e&&(e={}),t.toBlob?new Promise((function(n){t.toBlob(n,e.type?e.type:"image/png",e.quality?e.quality:1)})):new Promise((function(n){for(var r=window.atob(t.toDataURL(e.type?e.type:void 0,e.quality?e.quality:void 0).split(",")[1]),i=r.length,o=new Uint8Array(i),u=0;u<i;u+=1)o[u]=r.charCodeAt(u);n(new Blob([o],{type:e.type?e.type:"image/png"}))}))}function l(t){return new Promise((function(e,n){var r=new Image;r.decode=function(){return e(r)},r.onload=function(){return e(r)},r.onerror=n,r.crossOrigin="anonymous",r.decoding="async",r.src=t}))}function f(t){return e(this,void 0,void 0,(function(){return n(this,(function(e){return[2,Promise.resolve().then((function(){return(new XMLSerializer).serializeToString(t)})).then(encodeURIComponent).then((function(t){return"data:image/svg+xml;charset=utf-8,".concat(t)}))]}))}))}function h(t,r,i){return e(this,void 0,void 0,(function(){var e,o,u;return n(this,(function(n){return e="http://www.w3.org/2000/svg",o=document.createElementNS(e,"svg"),u=document.createElementNS(e,"foreignObject"),o.setAttribute("width","".concat(r)),o.setAttribute("height","".concat(i)),o.setAttribute("viewBox","0 0 ".concat(r," ").concat(i)),u.setAttribute("width","100%"),u.setAttribute("height","100%"),u.setAttribute("x","0"),u.setAttribute("y","0"),u.setAttribute("externalResourcesRequired","true"),o.appendChild(u),u.appendChild(t),[2,f(o)]}))}))}var d=function(t,e){if(t instanceof e)return!0;var n=Object.getPrototypeOf(t);return null!==n&&(n.constructor.name===e.name||d(n,e))};function v(t,e,n){var r=".".concat(t,":").concat(e),i=n.cssText?function(t){var e=t.getPropertyValue("content");return"".concat(t.cssText," content: '").concat(e.replace(/'|"/g,""),"';")}(n):function(t){return o(t).map((function(e){var n=t.getPropertyValue(e),r=t.getPropertyPriority(e);return"".concat(e,": ").concat(n).concat(r?" !important":"",";")})).join(" ")}(n);return document.createTextNode("".concat(r,"{").concat(i,"}"))}function p(t,e,n){var r=window.getComputedStyle(t,n),o=r.getPropertyValue("content");if(""!==o&&"none"!==o){var u=i();try{e.className="".concat(e.className," ").concat(u)}catch(t){return}var c=document.createElement("style");c.appendChild(v(u,n,r)),e.appendChild(c)}}var g="application/font-woff",m="image/jpeg",w={woff:g,woff2:g,ttf:"application/font-truetype",eot:"application/vnd.ms-fontobject",png:"image/png",jpg:m,jpeg:m,gif:"image/gif",tiff:"image/tiff",svg:"image/svg+xml",webp:"image/webp"};function b(t){var e=function(t){var e=/\.([^./]*?)$/g.exec(t);return e?e[1]:""}(t).toLowerCase();return w[e]||""}function y(t){return-1!==t.search(/^(data:)/)}function x(t,e){return"data:".concat(e,";base64,").concat(t)}function S(t,r,i){return e(this,void 0,void 0,(function(){var e,o;return n(this,(function(n){switch(n.label){case 0:return[4,fetch(t,r)];case 1:if(404===(e=n.sent()).status)throw new Error('Resource "'.concat(e.url,'" not found'));return[4,e.blob()];case 2:return o=n.sent(),[2,new Promise((function(t,n){var r=new FileReader;r.onerror=n,r.onloadend=function(){try{t(i({res:e,result:r.result}))}catch(t){n(t)}},r.readAsDataURL(o)}))]}}))}))}var E={};function C(t,r,i){return e(this,void 0,void 0,(function(){var e,o,u,c,a;return n(this,(function(n){switch(n.label){case 0:if(e=function(t,e,n){var r=t.replace(/\?.*/,"");return n&&(r=t),/ttf|otf|eot|woff2?/i.test(r)&&(r=r.replace(/.*\//,"")),e?"[".concat(e,"]").concat(r):r}(t,r,i.includeQueryParams),null!=E[e])return[2,E[e]];i.cacheBust&&(t+=(/\?/.test(t)?"&":"?")+(new Date).getTime()),n.label=1;case 1:return n.trys.push([1,3,,4]),[4,S(t,i.fetchRequestInit,(function(t){var e=t.res,n=t.result;return r||(r=e.headers.get("Content-Type")||""),function(t){return t.split(/,/)[1]}(n)}))];case 2:return u=n.sent(),o=x(u,r),[3,4];case 3:return c=n.sent(),o=i.imagePlaceholder||"",a="Failed to fetch resource: ".concat(t),c&&(a="string"==typeof c?c:c.message),a&&console.warn(a),[3,4];case 4:return E[e]=o,[2,o]}}))}))}function P(t){return e(this,void 0,void 0,(function(){var e;return n(this,(function(n){return"data:,"===(e=t.toDataURL())?[2,t.cloneNode(!1)]:[2,l(e)]}))}))}function R(t,r){return e(this,void 0,void 0,(function(){var e,i,o,u;return n(this,(function(n){switch(n.label){case 0:return t.currentSrc?(e=document.createElement("canvas"),i=e.getContext("2d"),e.width=t.clientWidth,e.height=t.clientHeight,null==i||i.drawImage(t,0,0,e.width,e.height),[2,l(e.toDataURL())]):(o=t.poster,u=b(o),[4,C(o,u,r)]);case 1:return[2,l(n.sent())]}}))}))}function T(t){var r;return e(this,void 0,void 0,(function(){return n(this,(function(e){switch(e.label){case 0:return e.trys.push([0,3,,4]),(null===(r=null==t?void 0:t.contentDocument)||void 0===r?void 0:r.body)?[4,L(t.contentDocument.body,{},!0)]:[3,2];case 1:return[2,e.sent()];case 2:return[3,4];case 3:return e.sent(),[3,4];case 4:return[2,t.cloneNode(!1)]}}))}))}function A(t,e){return d(e,Element)&&(function(t,e){var n=e.style;if(n){var r=window.getComputedStyle(t);r.cssText?(n.cssText=r.cssText,n.transformOrigin=r.transformOrigin):o(r).forEach((function(i){var o=r.getPropertyValue(i);if("font-size"===i&&o.endsWith("px")){var u=Math.floor(parseFloat(o.substring(0,o.length-2)))-.1;o="".concat(u,"px")}d(t,HTMLIFrameElement)&&"display"===i&&"inline"===o&&(o="block"),"d"===i&&e.getAttribute("d")&&(o="path(".concat(e.getAttribute("d"),")")),n.setProperty(i,o,r.getPropertyPriority(i))}))}}(t,e),function(t,e){p(t,e,":before"),p(t,e,":after")}(t,e),function(t,e){d(t,HTMLTextAreaElement)&&(e.innerHTML=t.value),d(t,HTMLInputElement)&&e.setAttribute("value",t.value)}(t,e),function(t,e){if(d(t,HTMLSelectElement)){var n=e,r=Array.from(n.children).find((function(e){return t.value===e.getAttribute("value")}));r&&r.setAttribute("selected","")}}(t,e)),e}function L(t,r,i){return e(this,void 0,void 0,(function(){return n(this,(function(u){return i||!r.filter||r.filter(t)?[2,Promise.resolve(t).then((function(t){return function(t,r){return e(this,void 0,void 0,(function(){return n(this,(function(e){return d(t,HTMLCanvasElement)?[2,P(t)]:d(t,HTMLVideoElement)?[2,R(t,r)]:d(t,HTMLIFrameElement)?[2,T(t)]:[2,t.cloneNode(!1)]}))}))}(t,r)})).then((function(i){return function(t,r,i){var u,c;return e(this,void 0,void 0,(function(){var e;return n(this,(function(n){switch(n.label){case 0:return e=[],0===(e=null!=(a=t).tagName&&"SLOT"===a.tagName.toUpperCase()&&t.assignedNodes?o(t.assignedNodes()):d(t,HTMLIFrameElement)&&(null===(u=t.contentDocument)||void 0===u?void 0:u.body)?o(t.contentDocument.body.childNodes):o((null!==(c=t.shadowRoot)&&void 0!==c?c:t).childNodes)).length||d(t,HTMLVideoElement)?[2,r]:[4,e.reduce((function(t,e){return t.then((function(){return L(e,i)})).then((function(t){t&&r.appendChild(t)}))}),Promise.resolve())];case 1:return n.sent(),[2,r]}var a}))}))}(t,i,r)})).then((function(e){return A(t,e)})).then((function(t){return function(t,r){return e(this,void 0,void 0,(function(){var e,i,o,u,c,a,s,l,f,h,d,v,p;return n(this,(function(n){switch(n.label){case 0:if(0===(e=t.querySelectorAll?t.querySelectorAll("use"):[]).length)return[2,t];i={},p=0,n.label=1;case 1:return p<e.length?(o=e[p],(u=o.getAttribute("xlink:href"))?(c=t.querySelector(u),a=document.querySelector(u),c||!a||i[u]?[3,3]:(s=i,l=u,[4,L(a,r,!0)])):[3,3]):[3,4];case 2:s[l]=n.sent(),n.label=3;case 3:return p++,[3,1];case 4:if((f=Object.values(i)).length){for(h="http://www.w3.org/1999/xhtml",(d=document.createElementNS(h,"svg")).setAttribute("xmlns",h),d.style.position="absolute",d.style.width="0",d.style.height="0",d.style.overflow="hidden",d.style.display="none",v=document.createElementNS(h,"defs"),d.appendChild(v),p=0;p<f.length;p++)v.appendChild(f[p]);t.appendChild(d)}return[2,t]}}))}))}(t,r)}))]:[2,null]}))}))}var N=/url\((['"]?)([^'"]+?)\1\)/g,k=/url\([^)]+\)\s*format\((["']?)([^"']+)\1\)/g,I=/src:\s*(?:url\([^)]+\)\s*format\([^)]+\)[,;]\s*)+/g;function D(t,r,i,o,u){return e(this,void 0,void 0,(function(){var e,c,a,s;return n(this,(function(n){switch(n.label){case 0:return n.trys.push([0,5,,6]),e=i?function(t,e){if(t.match(/^[a-z]+:\/\//i))return t;if(t.match(/^\/\//))return window.location.protocol+t;if(t.match(/^[a-z]+:/i))return t;var n=document.implementation.createHTMLDocument(),r=n.createElement("base"),i=n.createElement("a");return n.head.appendChild(r),n.body.appendChild(i),e&&(r.href=e),i.href=t,i.href}(r,i):r,c=b(r),a=void 0,u?[4,u(e)]:[3,2];case 1:return s=n.sent(),a=x(s,c),[3,4];case 2:return[4,C(e,c,o)];case 3:a=n.sent(),n.label=4;case 4:return[2,t.replace((l=r,f=l.replace(/([.*+?^${}()|\[\]\/\\])/g,"\\$1"),new RegExp("(url\\(['\"]?)(".concat(f,")(['\"]?\\))"),"g")),"$1".concat(a,"$3"))];case 5:return n.sent(),[3,6];case 6:return[2,t]}var l,f}))}))}function M(t){return-1!==t.search(N)}function H(t,r,i){return e(this,void 0,void 0,(function(){var e,o;return n(this,(function(n){return M(t)?(e=function(t,e){var n=e.preferredFontFormat;return n?t.replace(I,(function(t){for(;;){var e=k.exec(t)||[],r=e[0],i=e[2];if(!i)return"";if(i===n)return"src: ".concat(r,";")}})):t}(t,i),o=function(t){var e=[];return t.replace(N,(function(t,n,r){return e.push(r),t})),e.filter((function(t){return!y(t)}))}(e),[2,o.reduce((function(t,e){return t.then((function(t){return D(t,e,r,i)}))}),Promise.resolve(e))]):[2,t]}))}))}function V(t,r,i){var o;return e(this,void 0,void 0,(function(){var e,u;return n(this,(function(n){switch(n.label){case 0:return(e=null===(o=r.style)||void 0===o?void 0:o.getPropertyValue(t))?[4,H(e,null,i)]:[3,2];case 1:return u=n.sent(),r.style.setProperty(t,u,r.style.getPropertyPriority(t)),[2,!0];case 2:return[2,!1]}}))}))}function F(t,r){return e(this,void 0,void 0,(function(){return n(this,(function(e){switch(e.label){case 0:return[4,V("background",t,r)];case 1:return e.sent()?[3,3]:[4,V("background-image",t,r)];case 2:e.sent(),e.label=3;case 3:return[4,V("mask",t,r)];case 4:return e.sent()?[3,6]:[4,V("mask-image",t,r)];case 5:e.sent(),e.label=6;case 6:return[2]}}))}))}function j(t,r){return e(this,void 0,void 0,(function(){var e,i,o;return n(this,(function(n){switch(n.label){case 0:return(e=d(t,HTMLImageElement))&&!y(t.src)||d(t,SVGImageElement)&&!y(t.href.baseVal)?[4,C(i=e?t.src:t.href.baseVal,b(i),r)]:[2];case 1:return o=n.sent(),[4,new Promise((function(n,r){t.onload=n,t.onerror=r;var i=t;i.decode&&(i.decode=n),"lazy"===i.loading&&(i.loading="eager"),e?(t.srcset="",t.src=o):t.href.baseVal=o}))];case 2:return n.sent(),[2]}}))}))}function q(t,r){return e(this,void 0,void 0,(function(){var e,i;return n(this,(function(n){switch(n.label){case 0:return e=o(t.childNodes),i=e.map((function(t){return U(t,r)})),[4,Promise.all(i).then((function(){return t}))];case 1:return n.sent(),[2]}}))}))}function U(t,r){return e(this,void 0,void 0,(function(){return n(this,(function(e){switch(e.label){case 0:return d(t,Element)?[4,F(t,r)]:[3,4];case 1:return e.sent(),[4,j(t,r)];case 2:return e.sent(),[4,q(t,r)];case 3:e.sent(),e.label=4;case 4:return[2]}}))}))}var O={};function B(t){return e(this,void 0,void 0,(function(){var e,r;return n(this,(function(n){switch(n.label){case 0:return null!=(e=O[t])?[2,e]:[4,fetch(t)];case 1:return[4,n.sent().text()];case 2:return r=n.sent(),e={url:t,cssText:r},O[t]=e,[2,e]}}))}))}function z(t,r){return e(this,void 0,void 0,(function(){var i,o,u,c,a=this;return n(this,(function(s){return i=t.cssText,o=/url\(["']?([^"')]+)["']?\)/g,u=i.match(/url\([^)]+\)/g)||[],c=u.map((function(u){return e(a,void 0,void 0,(function(){var e;return n(this,(function(n){return(e=u.replace(o,"$1")).startsWith("https://")||(e=new URL(e,t.url).href),[2,S(e,r.fetchRequestInit,(function(t){var e=t.result;return i=i.replace(u,"url(".concat(e,")")),[u,e]}))]}))}))})),[2,Promise.all(c).then((function(){return i}))]}))}))}function W(t){if(null==t)return[];for(var e=[],n=t.replace(/(\/\*[\s\S]*?\*\/)/gi,""),r=new RegExp("((@.*?keyframes [\\s\\S]*?){([\\s\\S]*?}\\s*?)})","gi");;){if(null===(u=r.exec(n)))break;e.push(u[0])}n=n.replace(r,"");for(var i=/@import[\s\S]*?url\([^)]*\)[\s\S]*?;/gi,o=new RegExp("((\\s*?(?:\\/\\*[\\s\\S]*?\\*\\/)?\\s*?@media[\\s\\S]*?){([\\s\\S]*?)}\\s*?})|(([\\s\\S]*?){([\\s\\S]*?)})","gi");;){var u;if(null===(u=i.exec(n))){if(null===(u=o.exec(n)))break;i.lastIndex=o.lastIndex}else o.lastIndex=i.lastIndex;e.push(u[0])}return e}function $(t,r){return e(this,void 0,void 0,(function(){var e,i;return n(this,(function(n){return e=[],i=[],t.forEach((function(e){if("cssRules"in e)try{o(e.cssRules||[]).forEach((function(t,n){if(t.type===CSSRule.IMPORT_RULE){var o=n+1,u=B(t.href).then((function(t){return z(t,r)})).then((function(t){return W(t).forEach((function(t){try{e.insertRule(t,t.startsWith("@import")?o+=1:e.cssRules.length)}catch(e){console.error("Error inserting rule from remote css",{rule:t,error:e})}}))})).catch((function(t){console.error("Error loading remote css",t.toString())}));i.push(u)}}))}catch(o){var n=t.find((function(t){return null==t.href}))||document.styleSheets[0];null!=e.href&&i.push(B(e.href).then((function(t){return z(t,r)})).then((function(t){return W(t).forEach((function(t){n.insertRule(t,e.cssRules.length)}))})).catch((function(t){console.error("Error loading remote stylesheet",t)}))),console.error("Error inlining remote css file",o)}})),[2,Promise.all(i).then((function(){return t.forEach((function(t){if("cssRules"in t)try{o(t.cssRules||[]).forEach((function(t){e.push(t)}))}catch(e){console.error("Error while reading CSS rules from ".concat(t.href),e)}})),e}))]}))}))}function _(t){return t.filter((function(t){return t.type===CSSRule.FONT_FACE_RULE})).filter((function(t){return M(t.style.getPropertyValue("src"))}))}function G(t,r){return e(this,void 0,void 0,(function(){return n(this,(function(e){switch(e.label){case 0:if(null==t.ownerDocument)throw new Error("Provided element is not within a Document");return[4,$(o(t.ownerDocument.styleSheets),r)];case 1:return[2,_(e.sent())]}}))}))}function J(t,r){return e(this,void 0,void 0,(function(){var e;return n(this,(function(n){switch(n.label){case 0:return[4,G(t,r)];case 1:return e=n.sent(),[4,Promise.all(e.map((function(t){var e=t.parentStyleSheet?t.parentStyleSheet.href:null;return H(t.cssText,e,r)})))];case 2:return[2,n.sent().join("\n")]}}))}))}function Q(t,r){return e(this,void 0,void 0,(function(){var e,i,o,u,c;return n(this,(function(n){switch(n.label){case 0:return null==r.fontEmbedCSS?[3,1]:(i=r.fontEmbedCSS,[3,5]);case 1:return r.skipFonts?(o=null,[3,4]):[3,2];case 2:return[4,J(t,r)];case 3:o=n.sent(),n.label=4;case 4:i=o,n.label=5;case 5:return(e=i)&&(u=document.createElement("style"),c=document.createTextNode(e),u.appendChild(c),t.firstChild?t.insertBefore(u,t.firstChild):t.appendChild(u)),[2]}}))}))}function X(t,r){return void 0===r&&(r={}),e(this,void 0,void 0,(function(){var e,i,o,u;return n(this,(function(n){switch(n.label){case 0:return e=c(t,r),i=e.width,o=e.height,[4,L(t,r,!0)];case 1:return[4,Q(u=n.sent(),r)];case 2:return n.sent(),[4,U(u,r)];case 3:return n.sent(),function(t,e){var n=t.style;e.backgroundColor&&(n.backgroundColor=e.backgroundColor),e.width&&(n.width="".concat(e.width,"px")),e.height&&(n.height="".concat(e.height,"px"));var r=e.style;null!=r&&Object.keys(r).forEach((function(t){n[t]=r[t]}))}(u,r),[4,h(u,i,o)];case 4:return[2,n.sent()]}}))}))}function K(t,r){return void 0===r&&(r={}),e(this,void 0,void 0,(function(){var e,i,o,u,s,f,h,d,v;return n(this,(function(n){switch(n.label){case 0:return e=c(t,r),i=e.width,o=e.height,[4,X(t,r)];case 1:return[4,l(n.sent())];case 2:return u=n.sent(),s=document.createElement("canvas"),f=s.getContext("2d"),h=r.pixelRatio||function(){var t,e;try{e=process}catch(t){}var n=e&&e.env?e.env.devicePixelRatio:null;return n&&(t=parseInt(n,10),Number.isNaN(t)&&(t=1)),t||window.devicePixelRatio||1}(),d=r.canvasWidth||i,v=r.canvasHeight||o,s.width=d*h,s.height=v*h,r.skipAutoScale||function(t){(t.width>a||t.height>a)&&(t.width>a&&t.height>a?t.width>t.height?(t.height*=a/t.width,t.width=a):(t.width*=a/t.height,t.height=a):t.width>a?(t.height*=a/t.width,t.width=a):(t.width*=a/t.height,t.height=a))}(s),s.style.width="".concat(d),s.style.height="".concat(v),r.backgroundColor&&(f.fillStyle=r.backgroundColor,f.fillRect(0,0,s.width,s.height)),f.drawImage(u,0,0,s.width,s.height),[2,s]}}))}))}t.getFontEmbedCSS=function(t,r){return void 0===r&&(r={}),e(this,void 0,void 0,(function(){return n(this,(function(e){return[2,J(t,r)]}))}))},t.toBlob=function(t,r){return void 0===r&&(r={}),e(this,void 0,void 0,(function(){return n(this,(function(e){switch(e.label){case 0:return[4,K(t,r)];case 1:return[4,s(e.sent())];case 2:return[2,e.sent()]}}))}))},t.toCanvas=K,t.toJpeg=function(t,r){return void 0===r&&(r={}),e(this,void 0,void 0,(function(){return n(this,(function(e){switch(e.label){case 0:return[4,K(t,r)];case 1:return[2,e.sent().toDataURL("image/jpeg",r.quality||1)]}}))}))},t.toPixelData=function(t,r){return void 0===r&&(r={}),e(this,void 0,void 0,(function(){var e,i,o,u;return n(this,(function(n){switch(n.label){case 0:return e=c(t,r),i=e.width,o=e.height,[4,K(t,r)];case 1:return u=n.sent(),[2,u.getContext("2d").getImageData(0,0,i,o).data]}}))}))},t.toPng=function(t,r){return void 0===r&&(r={}),e(this,void 0,void 0,(function(){return n(this,(function(e){switch(e.label){case 0:return[4,K(t,r)];case 1:return[2,e.sent().toDataURL()]}}))}))},t.toSvg=X}));
+</script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap');
-
     :root {
       --accent-color: #6366f1;
+      --accent-soft: rgba(99, 102, 241, 0.15);
+      --accent-highlight: rgba(99, 102, 241, 0.22);
+      --accent-highlight-dark: rgba(99, 102, 241, 0.36);
     }
 
     body {
-      font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
       background-color: #f8fafc;
       color: #0f172a;
     }
 
-    .font-sans-custom { font-family: 'Inter', 'Noto Sans SC', sans-serif; }
-    .font-serif-custom { font-family: 'Noto Serif SC', Georgia, serif; }
-    .font-mono-custom { font-family: 'JetBrains Mono', 'Noto Sans SC', monospace; }
+    /* 网络字体加载不到时（如国内网络）自动退回系统中文字体 */
+    .font-sans-custom { font-family: 'Inter', 'Noto Sans SC', -apple-system, 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif; }
+    .font-serif-custom { font-family: 'Noto Serif SC', 'Songti SC', 'STSong', 'SimSun', Georgia, serif; }
+    .font-mono-custom { font-family: 'JetBrains Mono', ui-monospace, Menlo, Consolas, 'PingFang SC', 'Microsoft YaHei', monospace; }
 
-    /* 5 套卡片视觉皮肤 */
+    /* 5 套卡片视觉皮肤（全部使用标准 hex/rgba，确保 导出兼容） */
     .skin-minimal {
       background: #ffffff;
       color: #1e293b;
@@ -43,14 +51,14 @@
     .skin-dark {
       background: linear-gradient(145deg, #0f172a 0%, #1e1b4b 100%);
       color: #f8fafc;
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.14);
       box-shadow: 0 25px 50px -12px rgba(2, 6, 23, 0.45);
     }
 
     .skin-aurora {
       background: linear-gradient(135deg, #fff1f2 0%, #f3e8ff 50%, #e0f2fe 100%);
       color: #1e1b4b;
-      border: 1px solid rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.85);
       box-shadow: 0 20px 40px -15px rgba(139, 92, 246, 0.16);
     }
 
@@ -63,24 +71,57 @@
 
     /* 富文本高亮样式 */
     .vibe-highlight {
-      padding: 0 5px;
+      padding: 1px 5px;
       border-radius: 4px;
-      background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+      background-color: var(--accent-highlight);
       border-bottom: 2px solid var(--accent-color);
       font-weight: 600;
     }
     .skin-dark .vibe-highlight {
-      background-color: color-mix(in srgb, var(--accent-color) 35%, transparent);
+      background-color: var(--accent-highlight-dark);
       color: #ffffff;
     }
 
+    /* 卡片底部分割线 */
+    .card-footer-divider {
+      border-top: 1px solid rgba(148, 163, 184, 0.25);
+    }
+    .skin-dark .card-footer-divider {
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    /* 正文块级语法 */
+    .vibe-h { font-size: 1.12em; font-weight: 700; line-height: 1.45; }
+    .vibe-list { padding-left: 1.3em; }
+    .vibe-list li { margin: 0.2em 0; }
+    ul.vibe-list { list-style: disc; }
+    ol.vibe-list { list-style: decimal; }
+    .vibe-list li::marker { color: var(--accent-color); }
+    .vibe-quote { border-left: 3px solid var(--accent-color); padding: 2px 0 2px 12px; opacity: 0.85; }
+    .vibe-gap { height: 0.9em; }
+    .vibe-hr { border: 0; border-top: 1px dashed rgba(148, 163, 184, 0.55); margin: 1.1em 0; }
+    .skin-dark .vibe-hr { border-top-color: rgba(255, 255, 255, 0.22); }
+    .skin-editorial .vibe-hr { border-top: 2px solid #27272a; }
+    /* 导出时冻结过渡动画，否则切换皮肤后立刻导出会截到半途的颜色 */
+    .vibe-capturing, .vibe-capturing * { transition: none !important; }
+
+    /* 吐司提示 */
+    #toast { transition: opacity .2s, transform .2s; }
+
     /* 画布比例 */
-    .ratio-3-4 { width: 420px; min-height: 560px; }
-    .ratio-1-1 { width: 450px; min-height: 450px; }
+    .ratio-3-4 { width: 420px; } /* 高度由 JS 按实际宽度算出（min-height），正文多了卡片会自然变长 */
+    .ratio-1-1 { width: 450px; } /* 高度由 JS 按实际宽度算出（min-height），正文多了卡片会自然变长 */
+    .ratio-9-16 { width: 360px; } /* 高度由 JS 按实际宽度算出（min-height），正文多了卡片会自然变长 */
     .ratio-auto { width: 430px; min-height: 320px; }
+    /* 导出时固定宽度：手机上导出的图片尺寸和电脑上一样 */
+    .vibe-capturing.ratio-3-4 { width: 420px !important; max-width: none !important; flex-shrink: 0 !important; }
+    .vibe-capturing.ratio-1-1 { width: 450px !important; max-width: none !important; flex-shrink: 0 !important; }
+    .vibe-capturing.ratio-9-16 { width: 360px !important; max-width: none !important; flex-shrink: 0 !important; }
+    .vibe-capturing.ratio-auto { width: 430px !important; max-width: none !important; flex-shrink: 0 !important; }
 
     @media (max-width: 640px) {
-      .ratio-3-4, .ratio-1-1, .ratio-auto { width: 100%; max-width: 380px; }
+      .ratio-3-4, .ratio-1-1, .ratio-auto, .ratio-9-16 { width: 100%; max-width: 380px; }
+      .ratio-9-16 { max-width: 360px; }
     }
 
     ::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -91,7 +132,7 @@
 <body class="min-h-screen flex flex-col">
 
   <!-- 顶部导航栏 -->
-  <header class="bg-white border-b border-slate-200 px-5 py-3 flex items-center justify-between sticky top-0 z-30">
+  <header class="bg-white border-b border-slate-200 px-3 sm:px-5 py-3 gap-2 flex items-center justify-between sticky top-0 z-30">
     <div class="flex items-center gap-2.5">
       <div id="brandLogoBox" class="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold shadow-sm" style="background-color: var(--accent-color);">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
@@ -100,37 +141,30 @@
       </div>
       <div>
         <div class="flex items-center gap-2">
-          <span class="font-bold text-slate-900 tracking-tight text-base">VibeNote · 灵感签</span>
-          <span class="text-[11px] font-medium px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-600 border border-indigo-100">v2.1</span>
+          <span class="font-bold text-slate-900 tracking-tight text-base whitespace-nowrap">VibeNote<span class="hidden sm:inline"> · 灵感签</span></span>
+          <span class="hidden sm:inline text-[11px] font-medium px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-600 border border-indigo-100">v2.2</span>
         </div>
         <p class="text-[11px] text-slate-400 hidden sm:block">本地纯前端渲染 · 零数据上传 · 一键生成社媒图文卡片</p>
       </div>
     </div>
 
-    <div class="flex items-center gap-2.5">
-      <button onclick="resetAll()" class="text-xs text-slate-500 hover:text-slate-800 px-2.5 py-1.5 rounded-lg hover:bg-slate-100 transition hidden sm:inline-block">
-        重置内容
+    <div class="flex items-center gap-1.5 sm:gap-2.5">
+      <button onclick="resetAll()" aria-label="重置内容" title="重置内容" class="text-xs text-slate-500 hover:text-slate-800 px-2 sm:px-2.5 py-1.5 rounded-lg hover:bg-slate-100 transition whitespace-nowrap">
+        <span class="sm:hidden" aria-hidden="true">↺</span><span class="hidden sm:inline">重置内容</span>
       </button>
 
-      <!-- 未登录状态按钮 -->
-      <button id="loginOpenBtn" onclick="openAuthModal()" class="px-3.5 py-1.5 text-xs font-semibold rounded-lg text-white shadow-xs hover:opacity-90 transition flex items-center gap-1.5" style="background-color: var(--accent-color);">
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>
-        登录 / 创作者空间
+      <button onclick="openSavedDrawer()" class="whitespace-nowrap text-xs font-medium px-2.5 py-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 transition">
+        📚<span class="hidden sm:inline"> 灵感库</span> (<span id="savedCountNav">0</span>)
       </button>
 
-      <!-- 已登录状态胶囊 -->
-      <div id="userBadgeWrap" class="hidden items-center gap-2 bg-slate-100/90 border border-slate-200 pl-2 pr-1.5 py-1 rounded-full">
-        <span id="userAvatarNav" class="w-6 h-6 rounded-full text-white text-xs font-bold flex items-center justify-center" style="background-color: var(--accent-color);">创</span>
-        <span id="userNameNav" class="text-xs font-semibold text-slate-800 max-w-[96px] truncate">创作者</span>
-        <button onclick="openSavedDrawer()" class="text-[11px] font-medium px-2 py-0.5 rounded-full bg-white text-indigo-600 border border-indigo-100 hover:bg-indigo-50 transition">
-          灵感库 (<span id="savedCountNav">0</span>)
-        </button>
-        <button onclick="logoutUser()" title="退出登录" class="p-1 text-slate-400 hover:text-rose-500 transition">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" /></svg>
-        </button>
-      </div>
+      <!-- 本地创作者档案（不需要密码，只存在本机浏览器） -->
+      <button id="profileBtn" onclick="openAuthModal()" class="whitespace-nowrap px-3 py-1.5 text-xs font-semibold rounded-lg text-white shadow-xs hover:opacity-90 transition flex items-center gap-1.5" style="background-color: var(--accent-color);">
+        <span id="userAvatarNav" class="hidden w-5 h-5 rounded-full bg-white/25 text-white text-[11px] font-bold items-center justify-center">创</span>
+        <svg id="profileIcon" class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>
+        <span id="userNameNav" class="max-w-[96px] truncate">创作者档案</span>
+      </button>
 
-      <a href="https://github.com/chubbysheepsohandsome-creator/VibeNote" target="_blank" rel="noopener" title="GitHub 开源仓库" class="p-2 text-slate-500 hover:text-slate-900 rounded-lg hover:bg-slate-100 transition">
+      <a href="https://github.com/chubbysheepsohandsome-creator/VibeNote" target="_blank" rel="noopener" title="GitHub 开源仓库" class="hidden sm:block p-2 text-slate-500 hover:text-slate-900 rounded-lg hover:bg-slate-100 transition">
         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
       </a>
     </div>
@@ -176,6 +210,7 @@
 
         <textarea id="inputBody" rows="6" placeholder="在这里输入正文，支持 **加粗** 和 ==荧光高亮== 标记..."
           class="w-full px-3 py-2.5 text-sm leading-relaxed rounded-lg border border-slate-200 focus:outline-none focus:border-indigo-500 resize-y"></textarea>
+        <p class="text-[11px] leading-relaxed text-slate-400">语法：<code># 小标题</code> · <code>**加粗**</code> · <code>==高亮==</code> · <code>*斜体*</code> · <code>- 列表</code> · <code>1. 编号</code> · <code>&gt; 引用</code> · <code>---</code> 分割线</p>
       </section>
 
       <!-- 3. 皮肤与配色 -->
@@ -206,11 +241,11 @@
 
         <div class="flex items-center justify-between pt-1">
           <div class="flex items-center gap-1.5">
-            <button onclick="setAccent('#6366f1')" class="w-5 h-5 rounded-full bg-[#6366f1] ring-2 ring-offset-1 ring-transparent hover:scale-110 transition"></button>
-            <button onclick="setAccent('#ec4899')" class="w-5 h-5 rounded-full bg-[#ec4899] hover:scale-110 transition"></button>
-            <button onclick="setAccent('#f59e0b')" class="w-5 h-5 rounded-full bg-[#f59e0b] hover:scale-110 transition"></button>
-            <button onclick="setAccent('#10b981')" class="w-5 h-5 rounded-full bg-[#10b981] hover:scale-110 transition"></button>
-            <button onclick="setAccent('#0ea5e9')" class="w-5 h-5 rounded-full bg-[#0ea5e9] hover:scale-110 transition"></button>
+            <button onclick="setAccent('#6366f1')" aria-label="强调色：靛蓝" class="w-5 h-5 rounded-full bg-[#6366f1] hover:scale-110 transition"></button>
+            <button onclick="setAccent('#ec4899')" aria-label="强调色：粉色" class="w-5 h-5 rounded-full bg-[#ec4899] hover:scale-110 transition"></button>
+            <button onclick="setAccent('#f59e0b')" aria-label="强调色：琥珀" class="w-5 h-5 rounded-full bg-[#f59e0b] hover:scale-110 transition"></button>
+            <button onclick="setAccent('#10b981')" aria-label="强调色：翠绿" class="w-5 h-5 rounded-full bg-[#10b981] hover:scale-110 transition"></button>
+            <button onclick="setAccent('#0ea5e9')" aria-label="强调色：天蓝" class="w-5 h-5 rounded-full bg-[#0ea5e9] hover:scale-110 transition"></button>
             <input type="color" id="customColorPicker" value="#6366f1" onchange="setAccent(this.value)" title="自定义强调色" class="w-6 h-6 rounded cursor-pointer border-0 bg-transparent" />
           </div>
 
@@ -225,10 +260,11 @@
       <!-- 4. 尺寸与排版微调 -->
       <section class="space-y-3">
         <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400">4. 尺寸与排版</label>
-        <div class="grid grid-cols-3 gap-2">
+        <div class="grid grid-cols-4 gap-2">
           <button data-ratio="ratio-3-4" class="ratio-btn py-1.5 text-xs font-medium rounded-lg border-2 border-indigo-500 bg-indigo-50/50 text-indigo-700">3:4 小红书</button>
           <button data-ratio="ratio-1-1" class="ratio-btn py-1.5 text-xs font-medium rounded-lg border border-slate-200 text-slate-600">1:1 方图</button>
-          <button data-ratio="ratio-auto" class="ratio-btn py-1.5 text-xs font-medium rounded-lg border border-slate-200 text-slate-600">自适应高度</button>
+          <button data-ratio="ratio-9-16" class="ratio-btn py-1.5 text-xs font-medium rounded-lg border border-slate-200 text-slate-600">9:16 竖屏</button>
+          <button data-ratio="ratio-auto" class="ratio-btn py-1.5 text-xs font-medium rounded-lg border border-slate-200 text-slate-600">自适应</button>
         </div>
 
         <div class="grid grid-cols-2 gap-4 pt-1">
@@ -251,7 +287,7 @@
       <section class="space-y-3 pb-4">
         <div class="flex items-center justify-between">
           <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400">5. 创作者署名与水印</label>
-          <span id="profileSyncTip" class="text-[11px] text-emerald-600 hidden">✓ 已同步登录档案</span>
+          <span id="profileSyncTip" class="text-[11px] text-emerald-600 hidden">✓ 已同步创作者档案</span>
         </div>
         <div class="flex items-center gap-2">
           <label class="cursor-pointer shrink-0 w-10 h-10 rounded-full border border-dashed border-slate-300 flex items-center justify-center overflow-hidden bg-slate-50 hover:border-indigo-400" title="点击上传本地头像">
@@ -259,8 +295,8 @@
             <span id="avatarPlaceholderSmall" class="text-xs text-slate-400">+头像</span>
             <input type="file" id="avatarInput" accept="image/*" class="hidden" />
           </label>
-          <input id="inputAuthor" type="text" placeholder="你的昵称 / 公众号" class="flex-1 px-3 py-2 text-xs rounded-lg border border-slate-200 focus:outline-none" />
-          <input id="inputHandle" type="text" placeholder="@账号ID" class="w-28 px-3 py-2 text-xs rounded-lg border border-slate-200 focus:outline-none" />
+          <input id="inputAuthor" type="text" placeholder="你的昵称 / 公众号" class="flex-1 min-w-0 px-3 py-2 text-xs rounded-lg border border-slate-200 focus:outline-none" />
+          <input id="inputHandle" type="text" placeholder="@账号ID" class="w-24 sm:w-28 min-w-0 px-3 py-2 text-xs rounded-lg border border-slate-200 focus:outline-none" />
         </div>
 
         <div class="flex flex-wrap gap-4 text-xs text-slate-600 pt-1">
@@ -286,17 +322,17 @@
           <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 实时渲染 · 自动保存草稿
         </span>
 
-        <div class="flex items-center gap-2">
-          <select id="exportScale" class="text-xs border border-slate-200 rounded-lg px-2 py-1.5 bg-white text-slate-600">
-            <option value="2">2x 高清导出</option>
-            <option value="3">3x 超清印刷</option>
+        <div class="flex items-center gap-2 flex-wrap justify-end">
+          <select id="exportScale" aria-label="导出清晰度" class="text-xs border border-slate-200 rounded-lg px-2 py-1.5 bg-white text-slate-600">
+            <option value="2">2x 高清</option>
+            <option value="3">3x 超清</option>
           </select>
 
-          <button onclick="copyCardImage()" id="copyBtn" class="px-3 py-1.5 text-xs font-medium rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 transition">
+          <button onclick="copyCardImage()" id="copyBtn" class="whitespace-nowrap px-3 py-1.5 text-xs font-medium rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 transition">
             📋 复制图片
           </button>
 
-          <button onclick="downloadCard()" id="downloadBtn" class="px-4 py-1.5 text-xs font-semibold rounded-lg text-white shadow-sm hover:opacity-90 transition flex items-center gap-1.5" style="background-color: var(--accent-color);">
+          <button onclick="downloadCard()" id="downloadBtn" class="whitespace-nowrap px-4 py-1.5 text-xs font-semibold rounded-lg text-white shadow-sm hover:opacity-90 transition flex items-center gap-1.5" style="background-color: var(--accent-color);">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
             下载 PNG 卡片
           </button>
@@ -305,11 +341,11 @@
 
       <!-- 核心卡片渲染舞台 -->
       <div class="my-auto py-2 flex items-center justify-center w-full">
-        <div id="captureCard" class="skin-minimal ratio-3-4 font-sans-custom rounded-2xl flex flex-col justify-between transition-all duration-200 relative overflow-hidden" style="padding: 36px;">
+        <div id="captureCard" class="skin-minimal ratio-3-4 font-sans-custom rounded-2xl flex flex-col justify-between transition-all duration-200 relative break-words" style="padding: 36px;">
 
           <div>
             <div class="flex items-center justify-between mb-5">
-              <span id="cardTag" class="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full" style="background-color: color-mix(in srgb, var(--accent-color) 14%, transparent); color: var(--accent-color);">
+              <span id="cardTag" class="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full" style="background-color: var(--accent-soft); color: var(--accent-color);">
                 ✦ 每日灵感摘录
               </span>
               <span id="cardDate" class="text-xs opacity-50 font-mono">2026.11.16</span>
@@ -322,127 +358,110 @@
             <div id="cardBody" class="leading-relaxed space-y-3 whitespace-pre-wrap break-words opacity-90" style="font-size: 16px;"></div>
           </div>
 
-          <div class="pt-6 mt-6 border-t border-current/10 flex items-center justify-between gap-3">
+          <div class="pt-6 mt-6 card-footer-divider flex items-center justify-between gap-3">
             <div class="flex items-center gap-2.5">
               <div id="cardAvatarWrap" class="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0 overflow-hidden" style="background-color: var(--accent-color);">
                 <img id="cardAvatarImg" class="w-full h-full object-cover hidden" />
                 <span id="cardAvatarFallback">灵</span>
               </div>
               <div>
-                <div id="cardAuthor" class="text-xs font-bold leading-tight">灵感观察员</div>
+                <div id="cardAuthor" class="text-xs font-bold leading-tight whitespace-nowrap">灵感观察员</div>
                 <div id="cardHandle" class="text-[11px] opacity-55 mt-0.5">@VibeNote</div>
               </div>
             </div>
 
             <div class="text-right">
               <div id="cardReadTime" class="text-[11px] opacity-50">约 120 字</div>
-              <div id="cardWatermark" class="text-[10px] opacity-40 font-medium mt-0.5">Made with VibeNote 灵感签</div>
+              <div id="cardWatermark" class="text-[10px] opacity-40 font-medium mt-0.5 whitespace-nowrap">Made with VibeNote 灵感签</div>
             </div>
           </div>
 
         </div>
       </div>
 
-      <p class="text-[11px] text-slate-400 mt-6">提示：登录后可将常用卡片样式与署名保存至「创作者灵感库」，随时一键调用</p>
+      <p id="overflowHint" role="status" class="hidden mt-4 max-w-[430px] text-[12px] leading-relaxed text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2"></p>
+
+      <p class="text-[11px] text-slate-400 mt-6">提示：点「💾 收藏当前卡片」可把文案和样式存进灵感库；所有内容只保存在本机浏览器</p>
     </section>
   </main>
 
-  <!-- ================= 登录 / 注册模态框 ================= -->
-  <div id="authModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 backdrop-blur-xs p-4">
-    <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl border border-slate-200 overflow-hidden animate-fade-in">
-      <!-- 顶部标题区 -->
-      <div class="px-6 pt-6 pb-4 flex items-start justify-between">
+  <!-- ================= 创作者档案（本地，无密码） ================= -->
+  <div id="authModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 backdrop-blur-xs p-4" onclick="if(event.target===this)closeAuthModal()">
+    <div role="dialog" aria-modal="true" aria-label="创作者档案" class="bg-white w-full max-w-md rounded-2xl shadow-2xl border border-slate-200 overflow-hidden">
+      <div class="px-6 pt-6 pb-2 flex items-start justify-between">
         <div>
           <div class="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-0.5 rounded-full bg-indigo-50 text-indigo-600 mb-2">
-            ✨ VibeNote 创作者空间
+            ✨ VibeNote 创作者档案
           </div>
-          <h2 id="authModalTitle" class="text-xl font-bold text-slate-900">欢迎回来，创作者</h2>
-          <p class="text-xs text-slate-500 mt-1">登录后自动锁定你的专属名片署名，并解锁本地灵感收藏库</p>
+          <h2 class="text-xl font-bold text-slate-900">设置你的署名</h2>
+          <p class="text-xs text-slate-500 mt-1">保存后，重置或换模板时自动沿用这个署名。档案只存在这台设备的浏览器里，不需要密码，也不会上传。</p>
         </div>
-        <button onclick="closeAuthModal()" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100">
+        <button onclick="closeAuthModal()" aria-label="关闭" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
         </button>
       </div>
 
-      <!-- 登录/注册切换标签 -->
-      <div class="px-6">
-        <div class="grid grid-cols-2 bg-slate-100 p-1 rounded-xl text-xs font-semibold">
-          <button id="tabLoginBtn" onclick="switchAuthMode('login')" class="py-2 rounded-lg bg-white text-slate-900 shadow-xs transition">账号登录</button>
-          <button id="tabRegisterBtn" onclick="switchAuthMode('register')" class="py-2 rounded-lg text-slate-500 hover:text-slate-800 transition">创建新档案</button>
-        </div>
-      </div>
-
-      <!-- 表单区 -->
       <form id="authForm" onsubmit="handleAuthSubmit(event)" class="p-6 space-y-4">
-        <div id="registerFields" class="hidden space-y-3">
-          <div>
-            <label class="block text-xs font-medium text-slate-700 mb-1">创作者昵称（自动同步至卡片署名）</label>
-            <input id="authNickname" type="text" placeholder="例如：林间读书笔记" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 focus:outline-none focus:border-indigo-500" />
-          </div>
-          <div>
-            <label class="block text-xs font-medium text-slate-700 mb-1">社媒账号 ID（可选）</label>
-            <input id="authHandle" type="text" placeholder="例如：@LinReading" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 focus:outline-none focus:border-indigo-500" />
-          </div>
-        </div>
-
         <div>
-          <label class="block text-xs font-medium text-slate-700 mb-1">邮箱或用户名</label>
-          <input id="authEmail" type="text" required placeholder="creator@vibenote.app" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 focus:outline-none focus:border-indigo-500" />
+          <label class="block text-xs font-medium text-slate-700 mb-1">创作者昵称（同步到卡片署名）</label>
+          <input id="authNickname" type="text" required maxlength="24" placeholder="例如：林间读书笔记" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 focus:outline-none focus:border-indigo-500" />
         </div>
-
         <div>
-          <label class="block text-xs font-medium text-slate-700 mb-1">密码</label>
-          <div class="relative">
-            <input id="authPassword" type="password" required placeholder="请输入密码（不少于 4 位）" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 focus:outline-none focus:border-indigo-500 pr-10" />
-            <button type="button" onclick="togglePasswordVis()" class="absolute right-3 top-2.5 text-xs text-slate-400 hover:text-slate-600">显示</button>
-          </div>
+          <label class="block text-xs font-medium text-slate-700 mb-1">社媒账号 ID（可选）</label>
+          <input id="authHandle" type="text" maxlength="32" placeholder="例如：@LinReading" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 focus:outline-none focus:border-indigo-500" />
         </div>
-
-        <p id="authErrorMsg" class="text-xs text-rose-500 hidden"></p>
 
         <button type="submit" id="authSubmitBtn" class="w-full py-2.5 rounded-xl text-sm font-semibold text-white shadow-md hover:opacity-95 transition" style="background-color: var(--accent-color);">
-          立即登录并进入工作台
+          保存档案
         </button>
-
-        <div class="relative flex py-1 items-center">
-          <div class="flex-grow border-t border-slate-200"></div>
-          <span class="shrink mx-3 text-[11px] text-slate-400">或</span>
-          <div class="flex-grow border-t border-slate-200"></div>
-        </div>
-
-        <button type="button" onclick="guestQuickLogin()" class="w-full py-2 rounded-xl text-xs font-medium border border-slate-200 text-slate-600 hover:bg-slate-50 transition">
-          ⚡ 一键体验示范创作者账号
+        <button type="button" id="logoutBtn" onclick="logoutUser()" class="hidden w-full py-2 rounded-xl text-xs font-medium border border-slate-200 text-slate-500 hover:text-rose-600 hover:bg-rose-50 transition">
+          清除档案
         </button>
       </form>
     </div>
   </div>
 
+  <!-- 手机保存：长按图片存到相册（微信内置浏览器也可以） -->
+  <div id="saveOverlay" class="fixed inset-0 z-[55] hidden flex-col items-center justify-center bg-slate-900/85 p-5" onclick="if(event.target===this)closeSaveOverlay()">
+    <div role="dialog" aria-modal="true" aria-label="保存图片" class="w-full max-w-sm flex flex-col items-center gap-3">
+      <p class="text-white text-sm font-semibold">长按图片 →「存储到照片」或「保存图片」</p>
+      <img id="saveOverlayImg" alt="生成的卡片" class="w-full max-h-[70vh] object-contain rounded-xl shadow-2xl bg-white" />
+      <div class="flex gap-2">
+        <a id="saveOverlayLink" class="px-4 py-2 text-xs font-semibold rounded-lg bg-white text-slate-800">下载文件</a>
+        <button id="saveOverlayShare" class="hidden px-4 py-2 text-xs font-semibold rounded-lg bg-white text-slate-800" type="button">分享…</button>
+        <button onclick="closeSaveOverlay()" class="px-4 py-2 text-xs font-semibold rounded-lg border border-white/40 text-white" type="button">关闭</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 吐司提示 -->
+  <div id="toast" class="fixed left-1/2 bottom-6 z-[60] -translate-x-1/2 translate-y-2 opacity-0 pointer-events-none px-4 py-2 rounded-xl bg-slate-900 text-white text-xs shadow-lg"></div>
+
   <!-- ================= 灵感收藏库侧滑抽屉 ================= -->
-  <div id="savedDrawer" class="fixed inset-0 z-50 hidden justify-end bg-slate-900/40 backdrop-blur-xs">
-    <div class="bg-white w-full max-w-md h-full shadow-2xl flex flex-col">
+  <div id="savedDrawer" class="fixed inset-0 z-50 hidden justify-end bg-slate-900/40 backdrop-blur-xs" onclick="if(event.target===this)closeSavedDrawer()">
+    <div role="dialog" aria-modal="true" aria-label="灵感库" tabindex="-1" id="savedPanel" class="bg-white w-full max-w-md h-full shadow-2xl flex flex-col">
       <div class="p-5 border-b border-slate-200 flex items-center justify-between">
         <div>
           <h3 class="font-bold text-slate-900 text-base">📚 我的灵感卡片收藏库</h3>
           <p class="text-xs text-slate-400 mt-0.5">点击任意卡片即可一键恢复文案与皮肤配置</p>
         </div>
-        <button onclick="closeSavedDrawer()" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100">
+        <button onclick="closeSavedDrawer()" aria-label="关闭" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
         </button>
       </div>
 
-      <div id="savedListContainer" class="flex-1 overflow-y-auto p-5 space-y-3">
-        <!-- 动态渲染收藏卡片 -->
-      </div>
+      <div id="savedListContainer" class="flex-1 overflow-y-auto p-5 space-y-3"></div>
     </div>
   </div>
 
   <script>
+    const APP_VERSION = '2.2';
     const DRAFT_KEY = 'vibenote_draft_v2';
     const USER_KEY = 'vibenote_current_user';
-    const USERS_DB_KEY = 'vibenote_users_db';
+    const USERS_DB_KEY = 'vibenote_users_db'; // v2.1 存过明文密码，v2.2 起启动时清除
     const LIBRARY_KEY = 'vibenote_saved_cards';
+    const AVATAR_MAX = 160; // 头像压缩到 160px，避免 localStorage 超额
 
-    let authMode = 'login';
     let currentUser = null;
 
     const templates = {
@@ -459,16 +478,16 @@
       build: {
         tag: '🚀 独立开发周报 #01',
         title: '从 0 到 1 上线我的第一个网页工具',
-        body: '这周没有写一行后端代码，用纯前端做完了「VibeNote 灵感签」：\n\n• 解决了发小红书/即刻时**纯文本排版单调**的问题\n• 内置 5 套高颜值卡片皮肤与本地高清导出\n• ==完成永远比完美更重要==，先发布再迭代！'
+        body: '这周没有写一行后端代码，用纯前端做完了「VibeNote 灵感签」：\n\n- 解决了发小红书/即刻时**纯文本排版单调**的问题\n- 内置 5 套高颜值卡片皮肤与本地高清导出\n\n> ==完成永远比完美更重要==，先发布再迭代！'
       },
       list: {
         tag: '📝 效率干货清单',
         title: '每天睡前 10 分钟复盘的 3 个问题',
-        body: '✅ **今日高光**：今天做的哪一件事最有成就感？\n✅ **能量黑洞**：什么事情消耗了情绪却没有产出？\n✅ **明日唯一**：如果明天只能完成一件事，==哪一件最重要==？'
+        body: '✅ **今日高光**：今天做的哪一件事最有成就感？\n✅ **能量黑洞**：什么事情消耗了情绪却没有产出？\n✅ **明日唯一**：如果明天只能完成一件事，==哪一件最重要==？\n---\n*每晚 10 分钟，一年后你会感谢自己。*'
       }
     };
 
-    const state = {
+    const DEFAULTS = {
       tag: templates.quote.tag,
       title: templates.quote.title,
       body: templates.quote.body,
@@ -485,6 +504,13 @@
       showReadTime: true,
       showWatermark: true
     };
+    const VALID = {
+      skin: ['minimal', 'journal', 'dark', 'aurora', 'editorial'],
+      ratio: ['ratio-3-4', 'ratio-1-1', 'ratio-9-16', 'ratio-auto'],
+      font: ['font-sans-custom', 'font-serif-custom', 'font-mono-custom']
+    };
+
+    const state = { ...DEFAULTS };
 
     const els = {
       inputTag: document.getElementById('inputTag'),
@@ -501,90 +527,79 @@
       captureCard: document.getElementById('captureCard')
     };
 
-    /* ================= 登录与账户系统 ================= */
+    /* ================= 工具 ================= */
+    function hexToRgba(hex, alpha) {
+      let clean = (hex || '#6366f1').replace('#', '');
+      if (clean.length === 3) clean = clean.split('').map(c => c + c).join('');
+      const num = parseInt(clean, 16);
+      if (isNaN(num)) return `rgba(99, 102, 241, ${alpha})`;
+      return `rgba(${(num >> 16) & 255}, ${(num >> 8) & 255}, ${num & 255}, ${alpha})`;
+    }
+
+    // 取第一个“字”：emoji（含组合 emoji）不会被切成半个，否则导出会报 URI malformed
+    function firstChar(str, fallback) {
+      const t = String(str || '').trim();
+      if (!t) return fallback;
+      try { if (window.Intl && Intl.Segmenter) { const it = new Intl.Segmenter('zh', { granularity: 'grapheme' }).segment(t)[Symbol.iterator]().next(); if (!it.done) return it.value.segment; } } catch (e) {}
+      return Array.from(t)[0] || fallback;
+    }
+    function withTimeout(promise, ms, label) {
+      let timer;
+      return Promise.race([promise, new Promise((_, rej) => { timer = setTimeout(() => rej(new Error(label || 'timeout')), ms); })]).finally(() => clearTimeout(timer));
+    }
+
+    function readLS(key, fallback) {
+      try { const v = JSON.parse(localStorage.getItem(key)); return v == null ? fallback : v; } catch (e) { return fallback; }
+    }
+    // 写入失败（空间满 / 隐私模式）时返回 false，而不是抛错让按钮失灵
+    function writeLS(key, value) {
+      try { localStorage.setItem(key, JSON.stringify(value)); return true; } catch (e) { return false; }
+    }
+
+    let toastTimer = null;
+    function toast(msg, ms = 2200) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.style.opacity = '1';
+      t.style.transform = 'translate(-50%, 0)';
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => { t.style.opacity = '0'; t.style.transform = 'translate(-50%, 8px)'; }, ms);
+    }
+
+    /* ================= 本地创作者档案 ================= */
+    let modalReturn = null;
     function openAuthModal() {
-      document.getElementById('authErrorMsg').classList.add('hidden');
+      modalReturn = document.activeElement;
+      document.getElementById('authNickname').value = currentUser ? currentUser.nickname : (state.author || '');
+      document.getElementById('authHandle').value = currentUser ? currentUser.handle : (state.handle || '');
+      document.getElementById('logoutBtn').classList.toggle('hidden', !currentUser);
       document.getElementById('authModal').classList.remove('hidden');
       document.getElementById('authModal').classList.add('flex');
+      setTimeout(() => document.getElementById('authNickname').focus(), 30);
     }
 
     function closeAuthModal() {
+      if (document.getElementById('authModal').classList.contains('hidden')) return;
       document.getElementById('authModal').classList.add('hidden');
+      if (modalReturn && modalReturn.focus) { modalReturn.focus(); modalReturn = null; }
       document.getElementById('authModal').classList.remove('flex');
-    }
-
-    function switchAuthMode(mode) {
-      authMode = mode;
-      const isReg = mode === 'register';
-      document.getElementById('registerFields').classList.toggle('hidden', !isReg);
-      document.getElementById('authModalTitle').textContent = isReg ? '创建创作者档案' : '欢迎回来，创作者';
-      document.getElementById('authSubmitBtn').textContent = isReg ? '注册并锁定创作者名片' : '立即登录并进入工作台';
-      document.getElementById('tabLoginBtn').className = !isReg
-        ? 'py-2 rounded-lg bg-white text-slate-900 shadow-xs transition'
-        : 'py-2 rounded-lg text-slate-500 hover:text-slate-800 transition';
-      document.getElementById('tabRegisterBtn').className = isReg
-        ? 'py-2 rounded-lg bg-white text-slate-900 shadow-xs transition'
-        : 'py-2 rounded-lg text-slate-500 hover:text-slate-800 transition';
-    }
-
-    function togglePasswordVis() {
-      const pwd = document.getElementById('authPassword');
-      pwd.type = pwd.type === 'password' ? 'text' : 'password';
     }
 
     function handleAuthSubmit(e) {
       e.preventDefault();
-      const email = document.getElementById('authEmail').value.trim();
-      const password = document.getElementById('authPassword').value.trim();
-      const errEl = document.getElementById('authErrorMsg');
-
-      if (password.length < 4) {
-        errEl.textContent = '密码长度至少需要 4 位字符';
-        errEl.classList.remove('hidden');
-        return;
-      }
-
-      let db = {};
-      try { db = JSON.parse(localStorage.getItem(USERS_DB_KEY)) || {}; } catch (e) {}
-
-      if (authMode === 'register') {
-        const nickname = document.getElementById('authNickname').value.trim() || email.split('@')[0];
-        let handle = document.getElementById('authHandle').value.trim() || ('@' + email.split('@')[0]);
-        if (!handle.startsWith('@')) handle = '@' + handle;
-
-        db[email] = { email, password, nickname, handle };
-        localStorage.setItem(USERS_DB_KEY, JSON.stringify(db));
-        completeLogin(db[email]);
-      } else {
-        if (db[email] && db[email].password !== password) {
-          errEl.textContent = '密码错误，请重新输入（或点击下方一键体验示范账号）';
-          errEl.classList.remove('hidden');
-          return;
-        }
-        const userObj = db[email] || {
-          email,
-          nickname: email.split('@')[0],
-          handle: '@' + email.split('@')[0]
-        };
-        completeLogin(userObj);
-      }
-    }
-
-    function guestQuickLogin() {
-      completeLogin({
-        email: 'demo@vibenote.app',
-        nickname: '灵感主理人',
-        handle: '@VibeCreator'
-      });
+      const nickname = document.getElementById('authNickname').value.trim();
+      if (!nickname) return;
+      let handle = document.getElementById('authHandle').value.trim();
+      if (handle && !handle.startsWith('@')) handle = '@' + handle;
+      completeLogin({ nickname, handle });
+      toast('✓ 档案已保存，署名已同步');
     }
 
     function completeLogin(user) {
-      currentUser = user;
-      localStorage.setItem(USER_KEY, JSON.stringify(user));
-
-      // 自动同步创作者名片署名
-      state.author = user.nickname;
-      state.handle = user.handle;
+      currentUser = { nickname: String(user.nickname || '创作者'), handle: String(user.handle || '') };
+      writeLS(USER_KEY, currentUser);
+      state.author = currentUser.nickname;
+      state.handle = currentUser.handle;
       syncInputsFromState();
       render();
       updateAuthUI();
@@ -593,34 +608,41 @@
 
     function logoutUser() {
       currentUser = null;
-      localStorage.removeItem(USER_KEY);
+      try { localStorage.removeItem(USER_KEY); } catch (e) {}
       updateAuthUI();
+      closeAuthModal();
+      toast('档案已清除（卡片上的署名保持不变）');
     }
 
     function updateAuthUI() {
-      const loginBtn = document.getElementById('loginOpenBtn');
-      const badgeWrap = document.getElementById('userBadgeWrap');
-      const syncTip = document.getElementById('profileSyncTip');
-
+      const avatar = document.getElementById('userAvatarNav');
+      const icon = document.getElementById('profileIcon');
+      document.getElementById('profileSyncTip').classList.toggle('hidden', !currentUser);
       if (currentUser) {
-        loginBtn.classList.add('hidden');
-        badgeWrap.classList.remove('hidden');
-        badgeWrap.classList.add('flex');
-        syncTip.classList.remove('hidden');
         document.getElementById('userNameNav').textContent = currentUser.nickname;
-        document.getElementById('userAvatarNav').textContent = currentUser.nickname.charAt(0);
+        avatar.textContent = firstChar(currentUser.nickname, '创');
+        avatar.classList.remove('hidden'); avatar.classList.add('inline-flex');
+        icon.classList.add('hidden');
       } else {
-        loginBtn.classList.remove('hidden');
-        badgeWrap.classList.add('hidden');
-        badgeWrap.classList.remove('flex');
-        syncTip.classList.add('hidden');
+        document.getElementById('userNameNav').textContent = '创作者档案';
+        avatar.classList.add('hidden'); avatar.classList.remove('inline-flex');
+        icon.classList.remove('hidden');
       }
       updateSavedCount();
     }
 
     /* ================= 灵感收藏库 ================= */
     function getSavedCards() {
-      try { return JSON.parse(localStorage.getItem(LIBRARY_KEY)) || []; } catch (e) { return []; }
+      const list = readLS(LIBRARY_KEY, []);
+      if (!Array.isArray(list)) return [];
+      // 过滤损坏条目，并保证每张卡有唯一数字 id
+      const seen = new Set();
+      return list.filter(i => i && typeof i === 'object' && i.snapshot && typeof i.snapshot === 'object').map((i, k) => {
+        let id = Number(i.id);
+        if (!Number.isFinite(id) || seen.has(id)) id = Date.now() * 1000 + k;
+        seen.add(id);
+        return { ...i, id };
+      });
     }
 
     function updateSavedCount() {
@@ -628,29 +650,30 @@
     }
 
     function saveCurrentToLibrary() {
-      if (!currentUser) {
-        openAuthModal();
+      const list = getSavedCards();
+      list.unshift({ id: Date.now() * 1000 + Math.floor(Math.random() * 1000), savedAt: new Date().toLocaleDateString(), snapshot: { ...state } });
+      if (!writeLS(LIBRARY_KEY, list)) {
+        toast('⚠️ 浏览器存储空间已满，请先删除几张旧收藏', 3200);
+        openSavedDrawer();
         return;
       }
-      const list = getSavedCards();
-      list.unshift({
-        id: Date.now(),
-        savedAt: new Date().toLocaleDateString(),
-        snapshot: { ...state }
-      });
-      localStorage.setItem(LIBRARY_KEY, JSON.stringify(list));
       updateSavedCount();
-      openSavedDrawer();
+      toast('💾 已收藏到灵感库');
     }
 
     function openSavedDrawer() {
       renderSavedList();
       document.getElementById('savedDrawer').classList.remove('hidden');
       document.getElementById('savedDrawer').classList.add('flex');
+      drawerReturn = document.activeElement;
+      setTimeout(() => document.getElementById('savedPanel').focus(), 30);
     }
+    let drawerReturn = null;
 
     function closeSavedDrawer() {
+      if (document.getElementById('savedDrawer').classList.contains('hidden')) return;
       document.getElementById('savedDrawer').classList.add('hidden');
+      if (drawerReturn && drawerReturn.focus) { drawerReturn.focus(); drawerReturn = null; }
       document.getElementById('savedDrawer').classList.remove('flex');
     }
 
@@ -661,52 +684,112 @@
         container.innerHTML = `<div class="text-center py-12 text-xs text-slate-400">暂无收藏卡片，点击左侧「💾 收藏当前卡片」即可保存常用模板</div>`;
         return;
       }
-      container.innerHTML = list.map(item => `
+      container.innerHTML = list.map(item => {
+        const snap = item.snapshot || {};
+        const id = Number(item.id) || 0;
+        return `
         <div class="p-3.5 rounded-xl border border-slate-200 hover:border-indigo-400 bg-slate-50/60 transition flex items-start justify-between gap-3">
-          <div class="cursor-pointer flex-1" onclick="loadSavedCard(${item.id})">
-            <div class="text-[11px] text-indigo-600 font-semibold">${escapeHtml(item.snapshot.tag || '灵感卡片')} · ${item.savedAt}</div>
-            <div class="text-sm font-bold text-slate-800 mt-0.5 line-clamp-1">${escapeHtml(item.snapshot.title || '无标题卡片')}</div>
-            <div class="text-xs text-slate-500 mt-1 line-clamp-2">${escapeHtml(item.snapshot.body)}</div>
+          <div class="cursor-pointer flex-1 min-w-0" onclick="loadSavedCard(${id})">
+            <div class="text-[11px] text-indigo-600 font-semibold truncate">${escapeHtml(snap.tag || '灵感卡片')} · ${escapeHtml(item.savedAt || '')}</div>
+            <div class="text-sm font-bold text-slate-800 mt-0.5 line-clamp-1">${escapeHtml(snap.title || '无标题卡片')}</div>
+            <div class="text-xs text-slate-500 mt-1 line-clamp-2">${escapeHtml(snap.body || '')}</div>
           </div>
-          <button onclick="deleteSavedCard(${item.id})" class="text-xs text-slate-400 hover:text-rose-500 px-1.5 py-1">删除</button>
-        </div>
-      `).join('');
+          <button onclick="deleteSavedCard(${id})" class="text-xs text-slate-400 hover:text-rose-500 px-1.5 py-1">删除</button>
+        </div>`;
+      }).join('');
     }
 
     function loadSavedCard(id) {
       const found = getSavedCards().find(i => i.id === id);
       if (!found) return;
-      Object.assign(state, found.snapshot);
+      Object.assign(state, sanitizeState(found.snapshot));
       syncInputsFromState();
       render();
       closeSavedDrawer();
     }
 
     function deleteSavedCard(id) {
-      const next = getSavedCards().filter(i => i.id !== id);
-      localStorage.setItem(LIBRARY_KEY, JSON.stringify(next));
+      writeLS(LIBRARY_KEY, getSavedCards().filter(i => i.id !== id));
+      // （getSavedCards 已规范化 id，所以删除总能命中且只删一张）
       updateSavedCount();
       renderSavedList();
+      document.getElementById('savedPanel').focus(); // 删除的按钮已经不在了，焦点留在抽屉里
+    }
+
+    // 读回旧数据时只接受合法字段，防止旧版本/损坏数据把界面弄坏
+    function sanitizeState(obj) {
+      const out = {};
+      if (!obj || typeof obj !== 'object') return out;
+      for (const k of Object.keys(DEFAULTS)) {
+        if (!(k in obj)) continue;
+        const v = obj[k], d = DEFAULTS[k];
+        if (typeof v !== typeof d) continue;
+        if (VALID[k] && !VALID[k].includes(v)) continue;
+        if (k === 'accent' && !/^#[0-9a-f]{6}$/i.test(v)) continue;
+        if (k === 'fontSize') { out[k] = Math.min(22, Math.max(13, Math.round(v) || 16)); continue; }
+        if (k === 'padding') { out[k] = Math.min(56, Math.max(20, Math.round(v) || 36)); continue; }
+        if (k === 'avatar' && v && !/^data:image\//.test(v)) continue;
+        out[k] = v;
+      }
+      return out;
     }
 
     /* ================= 核心画布渲染引擎 ================= */
     function escapeHtml(str) {
-      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
     }
 
-    function formatRichText(text) {
+    // 行内语法：**加粗** ==高亮== *斜体*
+    function formatInline(text) {
       let safe = escapeHtml(text);
       safe = safe.replace(/\*\*(.+?)\*\*/g, '<strong class="font-bold">$1</strong>');
       safe = safe.replace(/==(.+?)==/g, '<span class="vibe-highlight">$1</span>');
+      safe = safe.replace(/(^|[^*A-Za-z0-9])\*(?!\s)([^*\n]+?)(?<!\s)\*(?![*A-Za-z0-9])/g, '$1<em class="italic">$2</em>');
       return safe;
     }
 
+    // 块级语法：# 小标题、- 列表、1. 编号、> 引用、--- 分割线；空行分段，单个换行保留
+    function formatRichText(text) {
+      const lines = String(text).replace(/\r\n?/g, '\n').split('\n');
+      const out = [];
+      let para = [], list = null, quote = [];
+      const flushPara = () => { if (para.length) { out.push(`<p>${para.map(formatInline).join('<br>')}</p>`); para = []; } };
+      const flushList = () => { if (list) { out.push(`<${list.tag} class="vibe-list"${list.tag === 'ol' && list.start !== 1 ? ` start="${list.start}"` : ''}>${list.items.map(i => `<li>${formatInline(i)}</li>`).join('')}</${list.tag}>`); list = null; } };
+      const flushQuote = () => { if (quote.length) { out.push(`<blockquote class="vibe-quote">${quote.map(formatInline).join('<br>')}</blockquote>`); quote = []; } };
+      const flushAll = () => { flushPara(); flushList(); flushQuote(); };
+
+      let blank = 0;
+      for (const raw of lines) {
+        const line = raw.replace(/\s+$/, '');
+        let m;
+        if (!line.trim()) { flushAll(); blank++; continue; }
+        // 连续多个空行：保留额外的留白（第一个空行只是分段）
+        if (blank > 1 && out.length) for (let b = 1; b < blank; b++) out.push('<div class="vibe-gap" aria-hidden="true"></div>');
+        blank = 0;
+        if (/^\s*(-{3,}|\*{3,}|_{3,})\s*$/.test(line)) { flushAll(); out.push('<hr class="vibe-hr">'); continue; }
+        if ((m = line.match(/^\s*#{1,6}\s+(.*)$/))) { flushAll(); out.push(`<div class="vibe-h">${formatInline(m[1])}</div>`); continue; }
+        if ((m = line.match(/^\s*>(?:\s+(.*)|$)/))) { flushPara(); flushList(); quote.push(m[1] || ''); continue; }
+        if ((m = line.match(/^\s*[-•·]\s+(.*)$/))) { flushPara(); flushQuote(); if (!list || list.tag !== 'ul') { flushList(); list = { tag: 'ul', items: [] }; } list.items.push(m[1]); continue; }
+        if ((m = line.match(/^\s*(\d{1,3})(?:[.)]\s+|、\s*)(.*)$/))) { flushPara(); flushQuote(); if (!list || list.tag !== 'ol') { flushList(); list = { tag: 'ol', items: [], start: Number(m[1]) }; } list.items.push(m[2]); continue; }
+        flushList(); flushQuote();
+        para.push(line);
+      }
+      flushAll();
+      return out.join('');
+    }
+
     function render() {
-      document.documentElement.style.setProperty('--accent-color', state.accent);
+      const rootStyle = document.documentElement.style;
+      rootStyle.setProperty('--accent-color', state.accent);
+      rootStyle.setProperty('--accent-soft', hexToRgba(state.accent, 0.14));
+      rootStyle.setProperty('--accent-highlight', hexToRgba(state.accent, 0.22));
+      rootStyle.setProperty('--accent-highlight-dark', hexToRgba(state.accent, 0.36));
 
       const cardTag = document.getElementById('cardTag');
       cardTag.textContent = state.tag;
       cardTag.style.display = state.tag.trim() ? 'inline-flex' : 'none';
+      cardTag.style.backgroundColor = hexToRgba(state.accent, 0.14);
+      cardTag.style.color = state.accent;
 
       const cardTitle = document.getElementById('cardTitle');
       cardTitle.textContent = state.title;
@@ -716,30 +799,29 @@
       cardBody.innerHTML = formatRichText(state.body);
       cardBody.style.fontSize = state.fontSize + 'px';
 
-      els.captureCard.className = `skin-${state.skin} ${state.ratio} ${state.font} rounded-2xl flex flex-col justify-between transition-all duration-200 relative overflow-hidden`;
+      els.captureCard.className = `skin-${state.skin} ${state.ratio} ${state.font} rounded-2xl flex flex-col justify-between transition-all duration-200 relative break-words`;
       els.captureCard.style.padding = state.padding + 'px';
+      applyRatioHeight(false);
 
       document.getElementById('fontSizeVal').textContent = state.fontSize + 'px';
       document.getElementById('paddingVal').textContent = state.padding + 'px';
 
       document.getElementById('cardAuthor').textContent = state.author || '匿名创作者';
       document.getElementById('cardHandle').textContent = state.handle || '';
-      const fallbackChar = (state.author || '灵').trim().charAt(0);
-      document.getElementById('cardAvatarFallback').textContent = fallbackChar;
+      document.getElementById('cardAvatarFallback').textContent = firstChar(state.author, '灵');
 
       const cardAvatarImg = document.getElementById('cardAvatarImg');
       const cardAvatarFallback = document.getElementById('cardAvatarFallback');
       const previewSmall = document.getElementById('avatarPreviewSmall');
       const placeholderSmall = document.getElementById('avatarPlaceholderSmall');
-
       if (state.avatar) {
-        cardAvatarImg.src = state.avatar;
+        if (cardAvatarImg.getAttribute('src') !== state.avatar) { cardAvatarImg.src = state.avatar; previewSmall.src = state.avatar; }
         cardAvatarImg.classList.remove('hidden');
         cardAvatarFallback.classList.add('hidden');
-        previewSmall.src = state.avatar;
         previewSmall.classList.remove('hidden');
         placeholderSmall.classList.add('hidden');
       } else {
+        cardAvatarImg.removeAttribute('src');
         cardAvatarImg.classList.add('hidden');
         cardAvatarFallback.classList.remove('hidden');
         previewSmall.classList.add('hidden');
@@ -747,33 +829,81 @@
       }
 
       const now = new Date();
-      const dateStr = `${now.getFullYear()}.${String(now.getMonth() + 1).padStart(2, '0')}.${String(now.getDate()).padStart(2, '0')}`;
       const cardDate = document.getElementById('cardDate');
-      cardDate.textContent = dateStr;
+      cardDate.textContent = `${now.getFullYear()}.${String(now.getMonth() + 1).padStart(2, '0')}.${String(now.getDate()).padStart(2, '0')}`;
       cardDate.style.display = state.showDate ? 'inline' : 'none';
 
-      const cleanCount = (state.title + state.body).replace(/\s+/g, '').length;
+      // 字数只数可见文字，不把 ** == # - > 这些标记算进去
+      const visible = (state.title + document.getElementById('cardBody').textContent).replace(/\s+/g, '');
       const cardReadTime = document.getElementById('cardReadTime');
-      cardReadTime.textContent = `约 ${cleanCount} 字`;
+      cardReadTime.textContent = `约 ${Array.from(visible).length} 字`;
       cardReadTime.style.display = state.showReadTime ? 'block' : 'none';
 
       document.getElementById('cardWatermark').style.display = state.showWatermark ? 'block' : 'none';
 
       document.querySelectorAll('.skin-btn').forEach(btn => {
-        const active = btn.dataset.skin === state.skin;
-        btn.className = active
+        btn.className = btn.dataset.skin === state.skin
           ? 'skin-btn flex flex-col items-center gap-1 p-1.5 rounded-lg border-2 border-indigo-500 bg-slate-50'
           : 'skin-btn flex flex-col items-center gap-1 p-1.5 rounded-lg border border-slate-200 hover:border-slate-300';
       });
-
       document.querySelectorAll('.ratio-btn').forEach(btn => {
-        const active = btn.dataset.ratio === state.ratio;
-        btn.className = active
+        btn.className = btn.dataset.ratio === state.ratio
           ? 'ratio-btn py-1.5 text-xs font-medium rounded-lg border-2 border-indigo-500 bg-indigo-50/50 text-indigo-700'
           : 'ratio-btn py-1.5 text-xs font-medium rounded-lg border border-slate-200 text-slate-600';
       });
 
-      try { localStorage.setItem(DRAFT_KEY, JSON.stringify(state)); } catch (e) {}
+      saveDraft();
+      scheduleOverflowCheck();
+    }
+
+    // 固定比例（3:4 / 1:1 / 9:16）下正文太长时，卡片会被撑高，导出的图片就不再是这个比例
+    const RATIO_H = { 'ratio-3-4': 4 / 3, 'ratio-1-1': 1, 'ratio-9-16': 16 / 9 };
+    const RATIO_W = { 'ratio-3-4': 420, 'ratio-1-1': 450, 'ratio-9-16': 360, 'ratio-auto': 430 };
+    // 卡片的目标宽度：电脑上固定；手机上是容器宽度（最多 380px）。导出时一律用电脑宽度
+    function targetWidth(forExport) {
+      const base = RATIO_W[state.ratio] || 420;
+      if (forExport || window.innerWidth > 640) return base;
+      const par = els.captureCard.parentElement, cs = getComputedStyle(par);
+      const inner = par.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      return Math.min(base, 380, inner);
+    }
+    function applyRatioHeight(forExport) {
+      const k = RATIO_H[state.ratio];
+      els.captureCard.style.minHeight = k ? Math.round(targetWidth(forExport) * k) + 'px' : '320px';
+    }
+    window.addEventListener('resize', () => { applyRatioHeight(false); scheduleOverflowCheck(); });
+    let overflowTimer = null;
+    function scheduleOverflowCheck() {
+      clearTimeout(overflowTimer);
+      overflowTimer = setTimeout(checkOverflow, 260); // 等过渡动画结束再量
+    }
+    function checkOverflow() {
+      const hint = document.getElementById('overflowHint');
+      const k = RATIO_H[state.ratio];
+      const card = els.captureCard;
+      if (!k) { hint.classList.add('hidden'); return; }
+      // 按导出时的宽度量：手机上预览更窄，但导出的图和电脑上一样宽
+      const w = targetWidth(true), want = Math.round(w * k);
+      const ghost = card.cloneNode(true);
+      ghost.removeAttribute('id'); ghost.querySelectorAll('[id]').forEach(n => n.removeAttribute('id'));
+      ghost.setAttribute('aria-hidden', 'true');
+      Object.assign(ghost.style, { position: 'absolute', left: '-10000px', top: '0', width: w + 'px', maxWidth: 'none', minHeight: want + 'px', transition: 'none', visibility: 'hidden' });
+      card.parentElement.appendChild(ghost);
+      const over = ghost.offsetHeight - want;
+      ghost.remove();
+      if (over > 4) {
+        const label = { 'ratio-3-4': '3:4', 'ratio-1-1': '1:1', 'ratio-9-16': '9:16' }[state.ratio];
+        hint.textContent = `内容超出 ${label} 画幅约 ${Math.round(over / want * 100)}%，导出图会变长。可调小字号/留白、删减文字，或改用「自适应」。`;
+        hint.classList.remove('hidden');
+      } else hint.classList.add('hidden');
+    }
+
+    let draftWarned = false;
+    function saveDraft() {
+      if (!writeLS(DRAFT_KEY, state) && !draftWarned) {
+        draftWarned = true;
+        toast('⚠️ 草稿未能自动保存：浏览器存储空间不足', 3500);
+      }
     }
 
     function syncInputsFromState() {
@@ -788,7 +918,7 @@
       els.toggleDate.checked = state.showDate;
       els.toggleReadTime.checked = state.showReadTime;
       els.toggleWatermark.checked = state.showWatermark;
-      document.getElementById('customColorPicker').value = state.accent;
+      document.getElementById('customColorPicker').value = /^#[0-9a-f]{6}$/i.test(state.accent) ? state.accent : '#6366f1';
     }
 
     function applyTemplate(key) {
@@ -812,77 +942,215 @@
       const start = textarea.selectionStart;
       const end = textarea.selectionEnd;
       const selected = textarea.value.substring(start, end) || '重点内容';
-      const replacement = `${token}${selected}${token}`;
-      textarea.setRangeText(replacement, start, end, 'select');
+      textarea.setRangeText(`${token}${selected}${token}`, start, end, 'select');
       state.body = textarea.value;
       textarea.focus();
       render();
     }
 
     function resetAll() {
-      localStorage.removeItem(DRAFT_KEY);
-      Object.assign(state, {
-        tag: templates.quote.tag,
-        title: templates.quote.title,
-        body: templates.quote.body,
-        skin: 'minimal',
-        ratio: 'ratio-3-4',
-        accent: '#6366f1',
-        font: 'font-sans-custom',
-        fontSize: 16,
-        padding: 36,
-        author: currentUser ? currentUser.nickname : '灵感观察员',
-        handle: currentUser ? currentUser.handle : '@VibeNote',
-        avatar: '',
-        showDate: true,
-        showReadTime: true,
-        showWatermark: true
+      if (!confirmReset()) return;
+      try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
+      Object.assign(state, DEFAULTS, {
+        author: currentUser ? currentUser.nickname : DEFAULTS.author,
+        handle: currentUser ? currentUser.handle : DEFAULTS.handle
       });
       syncInputsFromState();
       render();
+      toast('已重置为默认内容');
+    }
+    // 第一次点提示确认，3 秒内再点才真正重置（不用会卡住页面的 confirm 弹窗）
+    let resetArmedAt = 0;
+    function confirmReset() {
+      if (Date.now() - resetArmedAt < 3000) { resetArmedAt = 0; return true; }
+      resetArmedAt = Date.now();
+      toast('再点一次「重置内容」确认清空当前草稿', 3000);
+      return false;
+    }
+
+    /* ================= 头像：压缩后再保存 ================= */
+    function shrinkImage(file) {
+      return new Promise((resolve, reject) => {
+        const url = URL.createObjectURL(file);
+        const img = new Image();
+        img.onload = () => {
+          const side = Math.min(img.naturalWidth, img.naturalHeight);
+          const out = Math.min(AVATAR_MAX, side);
+          const c = document.createElement('canvas');
+          c.width = c.height = out;
+          const ctx = c.getContext('2d');
+          ctx.imageSmoothingQuality = 'high';
+          const keepAlpha = /png|gif|webp/i.test(file.type || '');
+          // 居中裁成正方形
+          ctx.drawImage(img, (img.naturalWidth - side) / 2, (img.naturalHeight - side) / 2, side, side, 0, 0, out, out);
+          URL.revokeObjectURL(url);
+          // 只有真的有透明像素才存 PNG（体积大）；否则存 JPEG
+          let transparent = false;
+          if (keepAlpha) { try { const d = ctx.getImageData(0, 0, out, out).data; for (let i = 3; i < d.length; i += 4) if (d[i] < 250) { transparent = true; break; } } catch (e) {} }
+          resolve(transparent ? c.toDataURL('image/png') : c.toDataURL('image/jpeg', 0.88));
+        };
+        img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('图片无法读取')); };
+        img.src = url;
+      });
+    }
+
+    /* ================= 导出 ================= */
+    // 只嵌入卡片真正用到的字体文件：Google 的中文字体按字符拆成上百个分片，全部嵌入会让导出极慢甚至卡死
+    const fontDataCache = new Map();
+    function rangeHits(range, cps) {
+      if (!range) return true;
+      return range.split(',').some(part => {
+        const m = part.trim().replace(/^U\+/i, '').split('-');
+        if (m[0].includes('?')) { const lo = parseInt(m[0].replace(/\?/g, '0'), 16), hi = parseInt(m[0].replace(/\?/g, 'F'), 16); return cps.some(c => c >= lo && c <= hi); }
+        const lo = parseInt(m[0], 16), hi = m[1] ? parseInt(m[1], 16) : lo;
+        return cps.some(c => c >= lo && c <= hi);
+      });
+    }
+    async function toDataUrl(url) {
+      if (fontDataCache.has(url)) return fontDataCache.get(url);
+      const p = fetch(url, { mode: 'cors' }).then(r => { if (!r.ok) throw new Error('font ' + r.status); return r.blob(); })
+        .then(b => new Promise((res, rej) => { const fr = new FileReader(); fr.onload = () => res(fr.result); fr.onerror = rej; fr.readAsDataURL(b); }));
+      fontDataCache.set(url, p);
+      p.catch(() => fontDataCache.delete(url));
+      return p;
+    }
+    async function buildFontCSS(node) {
+      const cps = Array.from(new Set(Array.from(node.innerText || ''))).map(ch => ch.codePointAt(0));
+      const families = new Set();
+      node.querySelectorAll('*').forEach(e => getComputedStyle(e).fontFamily.split(',').forEach(f => families.add(f.trim().replace(/^["']|["']$/g, '').toLowerCase())));
+      const jobs = [];
+      for (const sheet of Array.from(document.styleSheets)) {
+        let rules; try { rules = sheet.cssRules; } catch (e) { continue; } // 读不到的跨域样式表直接跳过
+        for (const r of Array.from(rules || [])) {
+          if (r.type !== CSSRule.FONT_FACE_RULE) continue;
+          const fam = (r.style.getPropertyValue('font-family') || '').trim().replace(/^["']|["']$/g, '').toLowerCase();
+          if (!families.has(fam) || !rangeHits(r.style.getPropertyValue('unicode-range'), cps)) continue;
+          const m = /url\(["']?([^"')]+)["']?\)/.exec(r.style.getPropertyValue('src'));
+          if (!m) continue;
+          const url = new URL(m[1], sheet.href || location.href).href;
+          jobs.push(toDataUrl(url).then(data => r.cssText.replace(m[0], `url(${data})`)));
+        }
+      }
+      if (jobs.length > 80) throw new Error('too many font files'); // 极端情况：直接用系统字体
+      const parts = await Promise.all(jobs);
+      return parts.join('\n');
     }
 
     async function renderCanvas() {
       const scale = Number(document.getElementById('exportScale').value) || 2;
-      return await html2canvas(els.captureCard, { scale, useCORS: true, backgroundColor: null });
+      try { if (document.fonts && document.fonts.ready) await withTimeout(document.fonts.ready, 2000); } catch (e) {}
+      const card = els.captureCard;
+      card.classList.add('vibe-capturing');
+      applyRatioHeight(true);
+      // 等两帧，让冻结过渡和固定导出宽度生效
+      await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+      const opts = {
+        pixelRatio: scale,
+        cacheBust: true,
+        filter: (n) => !(n.tagName === 'IMG' && !n.getAttribute('src'))
+      };
+      try {
+        let fontEmbedCSS = '';
+        try { fontEmbedCSS = await withTimeout(buildFontCSS(card), 6000, 'fonts'); } catch (e) { fontEmbedCSS = null; }
+        if (fontEmbedCSS !== null) {
+          try { return await withTimeout(htmlToImage.toCanvas(card, { ...opts, fontEmbedCSS }), 10000, 'render'); } catch (e) {}
+        }
+        // 网络字体拿不到或太慢：用系统字体导出（中文会用苹方 / 微软雅黑等）
+        return await withTimeout(htmlToImage.toCanvas(card, { ...opts, skipFonts: true }), 15000, 'render');
+      } finally {
+        card.classList.remove('vibe-capturing');
+        applyRatioHeight(false);
+      }
+    }
+
+    function canvasToBlob(canvas) {
+      return new Promise((resolve, reject) => canvas.toBlob(b => (b ? resolve(b) : reject(new Error('生成图片失败'))), 'image/png'));
+    }
+
+    function fileName() {
+      const base = Array.from((state.title || state.tag || '灵感签').replace(/[\\/:*?"<>|\s]+/g, '')).slice(0, 20).join('') || '灵感签';
+      return `VibeNote-${base}-${Date.now()}.png`;
     }
 
     async function downloadCard() {
       const btn = document.getElementById('downloadBtn');
+      if (btn.disabled) return;
       const oldHtml = btn.innerHTML;
       btn.textContent = '生成中...';
       btn.disabled = true;
       try {
-        const canvas = await renderCanvas();
+        const blob = await canvasToBlob(await renderCanvas());
+        const url = URL.createObjectURL(blob);
+        if (isPhone()) { openSaveOverlay(blob, url); return; }
         const link = document.createElement('a');
-        link.download = `VibeNote-灵感签-${Date.now()}.png`;
-        link.href = canvas.toDataURL('image/png');
+        link.download = fileName();
+        link.href = url;
+        document.body.appendChild(link);
         link.click();
+        link.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 10000);
+        toast('✅ PNG 已生成');
       } catch (err) {
-        alert('导出失败，请重试：' + err.message);
+        console.error('VibeNote export failed', err);
+        toast('导出失败，请再试一次；如果反复失败，换个浏览器或去掉特殊符号试试', 4000);
       } finally {
         btn.innerHTML = oldHtml;
         btn.disabled = false;
       }
     }
 
+    function isPhone() {
+      return window.matchMedia && matchMedia('(pointer: coarse)').matches && Math.min(screen.width, screen.height) < 820;
+    }
+    let overlayUrl = null, lastFocus = null;
+    function openSaveOverlay(blob, url) {
+      overlayUrl = url;
+      lastFocus = document.activeElement;
+      document.getElementById('saveOverlayImg').src = url;
+      const link = document.getElementById('saveOverlayLink');
+      link.href = url; link.download = fileName();
+      const share = document.getElementById('saveOverlayShare');
+      const file = new File([blob], fileName(), { type: 'image/png' });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        share.classList.remove('hidden');
+        share.onclick = () => navigator.share({ files: [file] }).catch(() => {});
+      } else share.classList.add('hidden');
+      const o = document.getElementById('saveOverlay');
+      o.classList.remove('hidden'); o.classList.add('flex');
+    }
+    function closeSaveOverlay() {
+      const o = document.getElementById('saveOverlay');
+      if (o.classList.contains('hidden')) return;
+      o.classList.add('hidden'); o.classList.remove('flex');
+      if (overlayUrl) { const u = overlayUrl; overlayUrl = null; setTimeout(() => URL.revokeObjectURL(u), 1000); }
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
     async function copyCardImage() {
       const btn = document.getElementById('copyBtn');
+      if (btn.disabled) return;
       const oldText = btn.textContent;
+      if (!navigator.clipboard || !window.ClipboardItem) {
+        toast('当前浏览器不支持直接复制图片，请用「下载 PNG 卡片」', 3500);
+        return;
+      }
       btn.textContent = '复制中...';
+      btn.disabled = true;
       try {
-        const canvas = await renderCanvas();
-        canvas.toBlob(async (blob) => {
-          await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
-          btn.textContent = '✅ 已复制';
-          setTimeout(() => (btn.textContent = oldText), 1800);
-        });
+        // 直接把 Promise 交给 ClipboardItem：Safari 要求在点击当下同步调用 clipboard.write
+        const blobPromise = renderCanvas().then(canvasToBlob);
+        await navigator.clipboard.write([new ClipboardItem({ 'image/png': blobPromise })]);
+        btn.textContent = '✅ 已复制';
+        setTimeout(() => (btn.textContent = oldText), 1800);
       } catch (err) {
         btn.textContent = oldText;
-        alert('当前浏览器不支持直接写入剪贴板，请使用右侧「下载 PNG 卡片」按钮。');
+        toast('复制失败（浏览器可能不允许），请用「下载 PNG 卡片」', 3500);
+      } finally {
+        btn.disabled = false;
       }
     }
 
+    /* ================= 事件绑定 ================= */
     els.inputTag.addEventListener('input', e => { state.tag = e.target.value; render(); });
     els.inputTitle.addEventListener('input', e => { state.title = e.target.value; render(); });
     els.inputBody.addEventListener('input', e => { state.body = e.target.value; render(); });
@@ -895,29 +1163,50 @@
     els.toggleReadTime.addEventListener('change', e => { state.showReadTime = e.target.checked; render(); });
     els.toggleWatermark.addEventListener('change', e => { state.showWatermark = e.target.checked; render(); });
 
-    document.querySelectorAll('.skin-btn').forEach(btn => {
-      btn.addEventListener('click', () => { state.skin = btn.dataset.skin; render(); });
-    });
+    document.querySelectorAll('.skin-btn').forEach(btn => btn.addEventListener('click', () => { state.skin = btn.dataset.skin; render(); }));
+    document.querySelectorAll('.ratio-btn').forEach(btn => btn.addEventListener('click', () => { state.ratio = btn.dataset.ratio; render(); }));
 
-    document.querySelectorAll('.ratio-btn').forEach(btn => {
-      btn.addEventListener('click', () => { state.ratio = btn.dataset.ratio; render(); });
-    });
-
-    document.getElementById('avatarInput').addEventListener('change', e => {
+    document.getElementById('avatarInput').addEventListener('change', async e => {
       const file = e.target.files[0];
+      e.target.value = '';
       if (!file) return;
-      const reader = new FileReader();
-      reader.onload = ev => { state.avatar = ev.target.result; render(); };
-      reader.readAsDataURL(file);
+      try {
+        state.avatar = await shrinkImage(file);
+        render();
+      } catch (err) {
+        toast('头像读取失败，请换一张图片', 3000);
+      }
     });
 
-    // 初始化加载本地状态与登录账户
-    try {
-      const savedDraft = JSON.parse(localStorage.getItem(DRAFT_KEY));
-      if (savedDraft) Object.assign(state, savedDraft);
-      const savedUser = JSON.parse(localStorage.getItem(USER_KEY));
-      if (savedUser) currentUser = savedUser;
-    } catch (e) {}
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') { closeSaveOverlay(); closeAuthModal(); closeSavedDrawer(); return; }
+      // Tab 键焦点留在打开的弹窗里
+      if (e.key === 'Tab') {
+        const open = ['saveOverlay', 'authModal', 'savedDrawer'].map(id => document.getElementById(id)).find(el => !el.classList.contains('hidden'));
+        if (!open) return;
+        const f = Array.from(open.querySelectorAll('button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])')).filter(x => !x.disabled && x.offsetParent !== null);
+        if (!f.length) return;
+        const first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && (document.activeElement === first || !open.contains(document.activeElement))) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && (document.activeElement === last || !open.contains(document.activeElement))) { e.preventDefault(); first.focus(); }
+      }
+    });
+
+    /* ================= 初始化 ================= */
+    try { localStorage.removeItem(USERS_DB_KEY); } catch (e) {} // 删除 v2.1 存下的明文密码
+    Object.assign(state, sanitizeState(readLS(DRAFT_KEY, null)));
+    const savedUser = readLS(USER_KEY, null);
+    if (savedUser && savedUser.nickname) {
+      currentUser = { nickname: String(savedUser.nickname), handle: String(savedUser.handle || '') };
+      writeLS(USER_KEY, currentUser); // 重写一遍，去掉 v2.1 记录里的 email/password 字段
+    } else if (savedUser) {
+      try { localStorage.removeItem(USER_KEY); } catch (e) {}
+    }
+
+    // 旧版本存下的大头像：压缩一次，释放存储空间
+    if (state.avatar && state.avatar.length > 60000) {
+      fetch(state.avatar).then(r => r.blob()).then(shrinkImage).then(small => { state.avatar = small; render(); }).catch(() => {});
+    }
 
     syncInputsFromState();
     updateAuthUI();
